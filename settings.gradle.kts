@@ -1,0 +1,42 @@
+pluginManagement {
+    includeBuild("build-logic")
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "LitLinkApp"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+include(":app")
+include(":feature")
+include(":core")
+include(":feature:home")
+include(":feature:onboarding")
+include(":feature:favorites")
+include(":feature:search")
+
+
+
+include(":feature:home:data")
+include(":feature:home:ui")
+include(":feature:home:domain")
+include(":core:common")
+include(":core:connectivity")
+include(":core:network")
+include(":core:ui")
+include(":navigation")
