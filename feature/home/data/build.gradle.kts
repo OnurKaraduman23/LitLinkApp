@@ -11,8 +11,8 @@ android {
 dependencies {
 
     implementation(projects.feature.home.domain)
-//    implementation(projects.core.network)
-//    implementation(projects.core.common)
+    implementation(projects.core.network)
+    implementation(projects.core.common)
 
 
 }
