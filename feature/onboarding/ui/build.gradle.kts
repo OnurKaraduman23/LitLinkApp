@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.onuryasarkaraduman.feature.home.ui"
+    namespace = "com.onuryasarkaraduman.feature.onboarding.ui"
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -16,7 +16,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.feature.onboarding.domain)
+    implementation(projects.feature.home.domain)
     testImplementation(libs.junit)
 
 }
