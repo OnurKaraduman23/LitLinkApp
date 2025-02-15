@@ -21,13 +21,13 @@ class HomeViewModel @Inject constructor(
         getData()
     }
 
-    override fun onAction(uiAction: UiAction) {
-        viewModelScope.launch {
-            when (uiAction) {
-                is UiAction.OnClick -> {}
-            }
-        }
-    }
+//    override fun onAction(uiAction: UiAction) {
+//        viewModelScope.launch {
+//            when (uiAction) {
+//                is UiAction.OnClick -> {}
+//            }
+//        }
+//    }
 
     private fun getData() = viewModelScope.launch {
 

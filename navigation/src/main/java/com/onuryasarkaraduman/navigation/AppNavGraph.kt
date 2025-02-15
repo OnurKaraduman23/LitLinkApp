@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.onuryasarkaraduman.ui.navigation.Home
+import com.onuryasarkaraduman.ui.navigation.homeScreen
 
 @Composable
 fun AppNavGraph(
@@ -16,7 +17,7 @@ fun AppNavGraph(
         startDestination = Home,
         modifier = modifier
     ) {
-        // SplashScreen()
+        homeScreen()
 
         splashFlowNavigation(navController = navController)
         mainFlowNavigation(navController = navController)

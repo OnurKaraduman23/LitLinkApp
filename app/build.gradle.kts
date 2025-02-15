@@ -31,6 +31,11 @@ android {
 }
 
 dependencies {
+    implementation(projects.navigation)
+    implementation(projects.core.network)
+    implementation(projects.core.connectivity)
+    implementation(projects.core.ui)
 
+    implementation(libs.navigation.compose)
 
 }
