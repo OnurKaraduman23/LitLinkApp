@@ -30,6 +30,7 @@ include(":feature:onboarding")
 include(":feature:favorites")
 include(":feature:search")
 include(":feature:detail")
+include(":feature:profile")
 
 
 
@@ -53,3 +54,6 @@ include(":feature:search:ui")
 include(":feature:detail:data")
 include(":feature:detail:domain")
 include(":feature:detail:ui")
+include(":feature:profile:data")
+include(":feature:profile:domain")
+include(":feature:profile:ui")

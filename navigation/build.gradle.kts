@@ -13,6 +13,11 @@ android {
 }
 dependencies {
     implementation(projects.feature.home.ui)
+    implementation(projects.feature.detail.ui)
+    implementation(projects.feature.favorites.ui)
+    implementation(projects.feature.search.ui)
+    implementation(projects.feature.profile.ui)
+
     implementation(projects.core.ui)
 
     implementation(libs.navigation.compose)
