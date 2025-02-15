@@ -29,6 +29,7 @@ include(":feature:home")
 include(":feature:onboarding")
 include(":feature:favorites")
 include(":feature:search")
+include(":feature:detail")
 
 
 
@@ -49,3 +50,6 @@ include(":feature:favorites:ui")
 include(":feature:search:data")
 include(":feature:search:domain")
 include(":feature:search:ui")
+include(":feature:detail:data")
+include(":feature:detail:domain")
+include(":feature:detail:ui")
