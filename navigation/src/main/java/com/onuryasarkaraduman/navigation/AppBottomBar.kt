@@ -52,7 +52,7 @@ fun AppBottomBar(
                         .wrapContentSize()
                         .weight(if (isSelected) 0.6f else 0.3f)
                         .background(
-                            color = if (isSelected) colorResource(id = R.color.lightGray) else Color.White,
+                            color = if (isSelected) colorResource(id = R.color.light_gray) else Color.White,
                             shape = RoundedCornerShape(16.dp)
                         )
                         .conditional(isSelected) { boldBorder(color = colorResource(id = R.color.yellow_selection_border)) }

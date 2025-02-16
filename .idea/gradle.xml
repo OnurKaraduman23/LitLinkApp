@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -30,7 +31,18 @@
             <option value="$PROJECT_DIR$/core/network" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/detail" />
+            <option value="$PROJECT_DIR$/feature/detail/data" />
+            <option value="$PROJECT_DIR$/feature/detail/domain" />
+            <option value="$PROJECT_DIR$/feature/detail/ui" />
+            <option value="$PROJECT_DIR$/feature/discover" />
+            <option value="$PROJECT_DIR$/feature/discover/data" />
+            <option value="$PROJECT_DIR$/feature/discover/domain" />
+            <option value="$PROJECT_DIR$/feature/discover/ui" />
             <option value="$PROJECT_DIR$/feature/favorites" />
+            <option value="$PROJECT_DIR$/feature/favorites/data" />
+            <option value="$PROJECT_DIR$/feature/favorites/domain" />
+            <option value="$PROJECT_DIR$/feature/favorites/ui" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/home/data" />
             <option value="$PROJECT_DIR$/feature/home/domain" />
@@ -39,7 +51,14 @@
             <option value="$PROJECT_DIR$/feature/onboarding/data" />
             <option value="$PROJECT_DIR$/feature/onboarding/domain" />
             <option value="$PROJECT_DIR$/feature/onboarding/ui" />
+            <option value="$PROJECT_DIR$/feature/profile" />
+            <option value="$PROJECT_DIR$/feature/profile/data" />
+            <option value="$PROJECT_DIR$/feature/profile/domain" />
+            <option value="$PROJECT_DIR$/feature/profile/ui" />
             <option value="$PROJECT_DIR$/feature/search" />
+            <option value="$PROJECT_DIR$/feature/search/data" />
+            <option value="$PROJECT_DIR$/feature/search/domain" />
+            <option value="$PROJECT_DIR$/feature/search/ui" />
             <option value="$PROJECT_DIR$/navigation" />
           </set>
         </option>

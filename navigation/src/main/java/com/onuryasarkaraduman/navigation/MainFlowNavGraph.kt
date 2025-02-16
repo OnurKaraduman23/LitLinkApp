@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
 import com.onuryasarkaraduman.ui.navigation.Home
 import com.onuryasarkaraduman.ui.navigation.Screen
+import com.onuryasarkaraduman.ui.navigation.discoverScreen
 import com.onuryasarkaraduman.ui.navigation.favoritesScreen
 import com.onuryasarkaraduman.ui.navigation.homeScreen
 import com.onuryasarkaraduman.ui.navigation.profileScreen
@@ -20,5 +21,6 @@ internal fun NavGraphBuilder.mainFlowNavigation(navController: NavHostController
         searchScreen()
         profileScreen()
         favoritesScreen()
+        discoverScreen()
     }
 }

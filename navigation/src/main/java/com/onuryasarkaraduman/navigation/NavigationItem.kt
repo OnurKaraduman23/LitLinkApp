@@ -1,6 +1,7 @@
 package com.onuryasarkaraduman.navigation
 
 import com.onuryasarkaraduman.ui.Search
+import com.onuryasarkaraduman.ui.navigation.Discover
 import com.onuryasarkaraduman.ui.navigation.Favorites
 import com.onuryasarkaraduman.ui.navigation.Home
 import com.onuryasarkaraduman.ui.navigation.Profile
@@ -36,14 +37,24 @@ sealed class NavigationItem(
         icon = R.drawable.ic_profile
     )
 
+    data object DiscoverScreen : NavigationItem(
+        route = Discover,
+        title = R.string.discover,
+        icon = R.drawable.ic_discover
+    )
+
     companion object {
         fun getNavigationRoutes() = listOf(
             HomeScreen.route.getRoute(),
             SearchScreen.route.getRoute(),
             FavoritesScreen.route.getRoute(),
-            ProfileScreen.route.getRoute()
+            ProfileScreen.route.getRoute(),
+            DiscoverScreen.route.getRoute()
         )
 
-        fun getNavigationItems() = listOf(HomeScreen, SearchScreen, FavoritesScreen, ProfileScreen)
+        fun getNavigationItems() = listOf(
+            HomeScreen, SearchScreen, FavoritesScreen, ProfileScreen,
+            DiscoverScreen
+        )
     }
 }
