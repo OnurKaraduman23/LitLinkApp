@@ -1,7 +1,10 @@
 package com.onuryasarkaraduman.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.onuryasarkaraduman.common.fold
+import com.onuryasarkaraduman.domain.use_case.GetBooksByCategoriesUseCase
 import com.onuryasarkaraduman.ui.HomeContract.UiAction
 import com.onuryasarkaraduman.ui.HomeContract.UiEffect
 import com.onuryasarkaraduman.ui.HomeContract.UiState
@@ -13,23 +16,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-
+    private val getBooksByCategoriesUseCase: GetBooksByCategoriesUseCase,
 ) : ViewModel(),
     MVI<UiState, UiAction, UiEffect> by mvi(UiState()) {
 
     init {
-        getData()
+        getBooksByCategories()
     }
 
-//    override fun onAction(uiAction: UiAction) {
-//        viewModelScope.launch {
-//            when (uiAction) {
-//                is UiAction.OnClick -> {}
-//            }
-//        }
-//    }
 
-    private fun getData() = viewModelScope.launch {
-
+    private fun getBooksByCategories() = viewModelScope.launch {
+        updateUiState { copy(isLoading = true) }
+        getBooksByCategoriesUseCase("science").fold(
+            onSuccess = {
+                updateUiState { copy(recommendedList = it, isLoading = false) }
+                Log.e("Dante", it.toString())
+            },
+            onError = {
+                updateUiState { copy(isLoading = false) }
+                emitUiEffect(UiEffect.ShowError(it.message.orEmpty()))
+            }
+        )
     }
 }
