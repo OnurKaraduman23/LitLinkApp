@@ -23,6 +23,10 @@ navigation = "2.8.6"
 coilVersion = "2.7.0"
 kotlinxSerialization = "1.8.0"
 
+glide = "4.15.1"
+glide_compiler = "4.15.1"
+glide_compose = "1.0.0-beta01"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -71,6 +75,8 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 javax-inject = { module = "javax.inject:javax.inject", version = "1" }
 
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glide_compose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

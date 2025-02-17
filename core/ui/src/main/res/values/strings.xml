@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome">Welcome</string>
+    <string name="user_category">User Categories</string>
+    <string name="friends_books">Friends Books</string>
+    <string name="empty_content">Empty Content</string>
+    <string name="add_friends">Add Friends</string>
+    <string name="you_have_no_friends">You Have No Friends</string>
+</resources>

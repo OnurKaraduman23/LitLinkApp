@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+internal class HomeViewModel @Inject constructor(
     private val getBooksByCategoriesUseCase: GetBooksByCategoriesUseCase,
 ) : ViewModel(),
     MVI<UiState, UiAction, UiEffect> by mvi(UiState()) {
@@ -24,6 +24,11 @@ class HomeViewModel @Inject constructor(
         getBooksByCategories()
     }
 
+    override fun onAction(uiAction: UiAction) {
+        when(uiAction){
+            is UiAction.OnClick ->{}
+        }
+    }
 
     private fun getBooksByCategories() = viewModelScope.launch {
         updateUiState { copy(isLoading = true) }

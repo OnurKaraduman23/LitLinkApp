@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -19,7 +18,7 @@ import androidx.compose.ui.unit.sp
 fun HeaderText(
     modifier: Modifier = Modifier,
     text: String,
-    fontSize: Int = 16,
+    fontSize: Int = 22,
     fontWeight: FontWeight = FontWeight.Bold,
     color: Color = Color.Black,
     overflow: TextOverflow = TextOverflow.Clip,
@@ -32,7 +31,7 @@ fun HeaderText(
 
     Text(
         modifier = modifier.fillMaxWidth()
-            .padding(horizontal = 32.dp),
+            .padding(horizontal = 24.dp),
         text = capitalizedText,
         color = color,
         fontSize = fontSize.sp,
