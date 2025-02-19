@@ -133,7 +133,7 @@ internal fun ColumnScope.FriendsBooksSection(
     onClickAddFriends: () -> Unit,
 ) {
     if (friendsBooksList.isEmpty()) {
-        EmptyFriendsBooksContent(onClickAddFriends = {onClickAddFriends()})
+        EmptyFriendsBooksContent(onClickAddFriends = { onClickAddFriends() })
     } else {
         LazyRow(
             modifier = Modifier
