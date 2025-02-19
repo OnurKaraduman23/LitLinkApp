@@ -4,8 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.onuryasarkaraduman.ui.navigation.Home
-import com.onuryasarkaraduman.ui.navigation.homeScreen
+import com.onuryasarkaraduman.ui.welcome.Welcome
+import com.onuryasarkaraduman.ui.welcome.welcomeScreen
+import com.onuryasarkaraduman.ui.categories_selector.CategoriesSelector
 
 @Composable
 fun AppNavGraph(
@@ -14,11 +15,13 @@ fun AppNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Home,
+        startDestination = Welcome,
         modifier = modifier
     ) {
-        homeScreen()
+//        homeScreen()
+        welcomeScreen(onNavigateCategoriesSelector = { navController.navigate(CategoriesSelector) })
 
+        onboardingFlowNavigation(navController = navController)
         splashFlowNavigation(navController = navController)
         mainFlowNavigation(navController = navController)
         loginFlowNavigation(navController = navController)

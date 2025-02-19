@@ -6,4 +6,8 @@
     <string name="empty_content">Empty Content</string>
     <string name="add_friends">Add Friends</string>
     <string name="you_have_no_friends">You Have No Friends</string>
+    <string name="next">Next</string>
+    <string name="onboarding_welcome">Discover a world where books connect people.
+Find fellow readers, share your favorite books, and make new friends.
+Let’s turn every page into an opportunity to connect.</string>
 </resources>

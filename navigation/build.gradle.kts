@@ -18,6 +18,7 @@ dependencies {
     implementation(projects.feature.search.ui)
     implementation(projects.feature.profile.ui)
     implementation(projects.feature.discover.ui)
+    implementation(projects.feature.onboarding.ui)
 
     implementation(projects.core.ui)
 

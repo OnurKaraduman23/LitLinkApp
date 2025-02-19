@@ -52,9 +52,10 @@ internal fun HomeScreen(
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(vertical = 8.dp).verticalScroll(
-            rememberScrollState()
-        ),
+        modifier = Modifier.fillMaxSize().padding(vertical = 8.dp, horizontal = 16.dp)
+            .verticalScroll(
+                rememberScrollState()
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
 
         ) {
@@ -90,7 +91,8 @@ internal fun HomeScreen(
         Spacer(modifier = Modifier.height(12.dp))
         FriendsBooksSection(
             friendsBooksList = uiState.friendsBooksList,
-            onItemClick = {}
+            onItemClick = {},
+            onClickAddFriends = {}
         )
     }
 }
@@ -128,9 +130,10 @@ internal fun ColumnScope.UserCategorySection(
 internal fun ColumnScope.FriendsBooksSection(
     friendsBooksList: List<CategoriesRecommendedModel>,
     onItemClick: (Int) -> Unit,
+    onClickAddFriends: () -> Unit,
 ) {
     if (friendsBooksList.isEmpty()) {
-        EmptyFriendsBooksContent()
+        EmptyFriendsBooksContent(onClickAddFriends = {onClickAddFriends()})
     } else {
         LazyRow(
             modifier = Modifier
