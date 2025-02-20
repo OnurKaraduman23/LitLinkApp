@@ -1,4 +1,4 @@
-package com.onuryasarkaraduman.data.dto
+package com.onuryasarkaraduman.dto
 
 
 import com.google.gson.annotations.SerializedName
@@ -13,7 +13,7 @@ data class Item(
     @SerializedName("kind")
     val kind: String,
     @SerializedName("saleInfo")
-    val saleInfo: SaleInfo,
+    val saleInfo: SaleInfo? = null,
     @SerializedName("selfLink")
     val selfLink: String,
     @SerializedName("volumeInfo")

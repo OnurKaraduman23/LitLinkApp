@@ -1,4 +1,4 @@
-package com.onuryasarkaraduman.data.dto
+package com.onuryasarkaraduman.dto
 
 
 import com.google.gson.annotations.SerializedName
@@ -13,7 +13,7 @@ data class SaleInfo(
     @SerializedName("listPrice")
     val listPrice: ListPrice,
     @SerializedName("offers")
-    val offers: List<Offer>,
+    val offers: List<Offer?> = emptyList(),
     @SerializedName("retailPrice")
     val retailPrice: RetailPriceX,
     @SerializedName("saleability")

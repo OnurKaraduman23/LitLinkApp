@@ -1,4 +1,4 @@
-package com.onuryasarkaraduman.data.dto
+package com.onuryasarkaraduman.dto
 
 
 import com.google.gson.annotations.SerializedName

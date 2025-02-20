@@ -1,11 +1,11 @@
-package com.onuryasarkaraduman.data.dto
+package com.onuryasarkaraduman.dto
 
 
 import com.google.gson.annotations.SerializedName
 
 data class ListPriceX(
     @SerializedName("amountInMicros")
-    val amountInMicros: Int,
+    val amountInMicros: Long,
     @SerializedName("currencyCode")
-    val currencyCode: String
+    val currencyCode: String = ""
 )

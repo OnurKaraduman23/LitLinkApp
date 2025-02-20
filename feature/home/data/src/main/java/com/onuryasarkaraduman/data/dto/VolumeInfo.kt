@@ -1,4 +1,4 @@
-package com.onuryasarkaraduman.data.dto
+package com.onuryasarkaraduman.dto
 
 
 import com.google.gson.annotations.SerializedName
@@ -9,7 +9,7 @@ data class VolumeInfo(
     @SerializedName("authors")
     val authors: List<String>,
     @SerializedName("averageRating")
-    val averageRating: Int,
+    val averageRating: Double,
     @SerializedName("canonicalVolumeLink")
     val canonicalVolumeLink: String,
     @SerializedName("categories")
