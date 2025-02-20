@@ -1,9 +1,11 @@
 package com.onuryasarkaraduman.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,8 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.onuryasarkaraduman.core.ui.R
 import com.onuryasarkaraduman.domain.model.CategoriesRecommendedModel
@@ -29,6 +33,7 @@ import com.onuryasarkaraduman.ui.HomeContract.UiAction
 import com.onuryasarkaraduman.ui.HomeContract.UiEffect
 import com.onuryasarkaraduman.ui.HomeContract.UiState
 import com.onuryasarkaraduman.ui.components.AppLoading
+import com.onuryasarkaraduman.ui.components.CategorySelectionTextField
 import com.onuryasarkaraduman.ui.components.EmptyFriendsBooksContent
 import com.onuryasarkaraduman.ui.components.EmptyUserCategoriesScreenContent
 import com.onuryasarkaraduman.ui.components.FriendsItemHome
@@ -36,6 +41,7 @@ import com.onuryasarkaraduman.ui.components.HeaderText
 import com.onuryasarkaraduman.ui.components.HomeRecommendedCategoriesCard
 import com.onuryasarkaraduman.ui.extensions.collectWithLifecycle
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 @Composable
 internal fun HomeScreen(
@@ -44,10 +50,16 @@ internal fun HomeScreen(
     onAction: (UiAction) -> Unit,
     onNavigateDetail: (Int) -> Unit,
 ) {
+    val context = LocalContext.current
     uiEffect.collectWithLifecycle { effect ->
         when (effect) {
-            is UiEffect.ShowError -> {}
-            is UiEffect.NavigateDetail -> {}
+            is UiEffect.ShowError -> {
+                Toast.makeText(context, effect.message, Toast.LENGTH_SHORT).show()
+            }
+
+            is UiEffect.NavigateDetail -> {
+//                onNavigateDetail(effect.id)
+            }
         }
     }
 
@@ -60,7 +72,10 @@ internal fun HomeScreen(
 
         ) {
         Spacer(modifier = Modifier.height(12.dp))
-        HeaderText(text = stringResource(id = R.string.welcome))
+        HeaderText(
+            modifier = Modifier.align(Alignment.Start),
+            text = stringResource(id = R.string.welcome)
+        )
 
         HorizontalDivider(
             modifier = Modifier.padding(vertical = 12.dp),
@@ -75,7 +90,21 @@ internal fun HomeScreen(
             color = colorResource(id = R.color.yellow),
         )
 
-        HeaderText(text = stringResource(id = R.string.user_category))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            HeaderText(text = stringResource(id = R.string.user_category))
+            CategorySelectionTextField(
+                items = uiState.userCategoryList,
+                selectedItem = uiState.userSelectedCategory,
+                showBottomSheetState = false
+            )
+        }
+
+
         Spacer(modifier = Modifier.height(12.dp))
         if (uiState.isLoading) AppLoading()
         UserCategorySection(
@@ -87,7 +116,10 @@ internal fun HomeScreen(
             thickness = 2.dp,
             color = colorResource(id = R.color.yellow),
         )
-        HeaderText(text = stringResource(id = R.string.friends_books))
+        HeaderText(
+            modifier = Modifier.align(Alignment.Start),
+            text = stringResource(id = R.string.friends_books)
+        )
         Spacer(modifier = Modifier.height(12.dp))
         FriendsBooksSection(
             friendsBooksList = uiState.friendsBooksList,
@@ -169,4 +201,16 @@ internal fun ColumnScope.FriendsSection() {
             FriendsItemHome()
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+
+    HomeScreen(
+        uiState = UiState(),
+        uiEffect = flow { },
+        onAction = {},
+        onNavigateDetail = {}
+    )
 }

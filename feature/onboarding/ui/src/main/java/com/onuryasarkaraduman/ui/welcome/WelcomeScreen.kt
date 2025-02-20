@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.onuryasarkaraduman.core.ui.R
 import com.onuryasarkaraduman.ui.components.BackgroundImage
-import com.onuryasarkaraduman.ui.components.NextButton
+import com.onuryasarkaraduman.ui.components.CutCornerButton
 
 @Composable
 fun WelcomeScreen(
@@ -55,7 +55,7 @@ fun WelcomeScreen(
             }
 
             Spacer(modifier = Modifier.height(8.dp))
-            NextButton(
+            CutCornerButton(
                 text = stringResource(id = R.string.next),
                 textColor = Color.Black,
                 onClick = {onNavigateCategoriesSelector()}

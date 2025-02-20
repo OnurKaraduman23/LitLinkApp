@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.onuryasarkaraduman.common.fold
 import com.onuryasarkaraduman.datastore.DataStoreHelper
 import com.onuryasarkaraduman.domain.use_case.GetBooksByCategoriesUseCase
+import com.onuryasarkaraduman.domain.use_case.GetRandomCategoryUseCase
 import com.onuryasarkaraduman.ui.HomeContract.UiAction
 import com.onuryasarkaraduman.ui.HomeContract.UiEffect
 import com.onuryasarkaraduman.ui.HomeContract.UiState
@@ -18,13 +19,14 @@ import javax.inject.Inject
 @HiltViewModel
 internal class HomeViewModel @Inject constructor(
     private val getBooksByCategoriesUseCase: GetBooksByCategoriesUseCase,
+    private val getRandomCategoryUseCase: GetRandomCategoryUseCase,
     private val dataStore: DataStoreHelper,
 ) : ViewModel(),
     MVI<UiState, UiAction, UiEffect> by mvi(UiState()) {
 
     init {
-        getBooksByCategories()
-        getUserSelectedCategories()
+        getUserSelectedCategoriesBooks()
+
     }
 
     override fun onAction(uiAction: UiAction) {
@@ -33,9 +35,9 @@ internal class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getBooksByCategories() = viewModelScope.launch {
+    private fun getBooksByCategories(selectedCategory: String) = viewModelScope.launch {
         updateUiState { copy(isLoading = true) }
-        getBooksByCategoriesUseCase("science").fold(
+        getBooksByCategoriesUseCase(selectedCategory).fold(
             onSuccess = {
                 updateUiState { copy(recommendedList = it, isLoading = false) }
                 Log.e("Dante", it.toString())
@@ -47,12 +49,17 @@ internal class HomeViewModel @Inject constructor(
         )
     }
 
-    private fun getUserSelectedCategories() {
+    private fun getUserSelectedCategoriesBooks() {
         viewModelScope.launch {
-            val result = dataStore.getUserCategories().collect {
-                Log.e("Dante", it.toString())
+            dataStore.getUserCategories().collect {
+                updateUiState { copy(userCategoryList = it) }
+                val selectedCategory = getRandomCategoryUseCase.execute(it)
+                updateUiState { copy(userSelectedCategory = selectedCategory) }
+                getBooksByCategories(selectedCategory = selectedCategory)
             }
 
         }
     }
+
+
 }

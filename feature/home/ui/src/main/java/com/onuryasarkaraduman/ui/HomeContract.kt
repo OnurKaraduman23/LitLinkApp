@@ -5,6 +5,8 @@ import com.onuryasarkaraduman.domain.model.CategoriesRecommendedModel
 internal object HomeContract {
     data class UiState(
         val isLoading: Boolean = true,
+        val userCategoryList: List<String> = emptyList(),
+        val userSelectedCategory: String = "",
         val recommendedList: List<CategoriesRecommendedModel> = emptyList(),
         val friendsBooksList: List<CategoriesRecommendedModel> = emptyList(),
     )

@@ -28,7 +28,7 @@ fun HeaderText(
     }
 
     Text(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier,
         text = capitalizedText,
         color = color,
         fontSize = fontSize.sp,

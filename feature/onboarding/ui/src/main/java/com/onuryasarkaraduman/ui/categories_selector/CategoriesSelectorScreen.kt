@@ -23,7 +23,7 @@ import com.onuryasarkaraduman.datasource.user_categories.UserCategories
 import com.onuryasarkaraduman.ui.categories_selector.CategoriesContract.UiAction
 import com.onuryasarkaraduman.ui.categories_selector.CategoriesContract.UiEffect
 import com.onuryasarkaraduman.ui.categories_selector.components.CategoryCard
-import com.onuryasarkaraduman.ui.components.NextButton
+import com.onuryasarkaraduman.ui.components.CutCornerButton
 import com.onuryasarkaraduman.ui.extensions.collectWithLifecycle
 import kotlinx.coroutines.flow.Flow
 
@@ -89,7 +89,7 @@ internal fun ColumnScope.CategoriesContent(
             }
         }
     }
-    NextButton(
+    CutCornerButton(
         text = stringResource(id = R.string.next),
         isEnabled = selectedStates.count { it } >= 4,
         onClick = {
