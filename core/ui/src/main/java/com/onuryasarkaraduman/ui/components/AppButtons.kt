@@ -27,14 +27,14 @@ import com.onuryasarkaraduman.core.ui.R
 fun AddFriendsButton(
     modifier: Modifier = Modifier,
     text: String,
-    onClickAddFriends:()-> Unit
-){
+    onClickAddFriends: () -> Unit,
+) {
     Button(
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
             containerColor = colorResource(id = R.color.yellow)
         ),
-        onClick = {onClickAddFriends()}
+        onClick = { onClickAddFriends() }
     ) {
         Icon(
             imageVector = Icons.Default.Add,
@@ -47,7 +47,7 @@ fun AddFriendsButton(
 @Composable
 fun NextButton(
     text: String,
-    textColor: Color,
+    textColor: Color = Color.Black,
     textFontWeight: FontWeight = FontWeight.Bold,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -95,7 +95,7 @@ fun AddFriendsButtonPreview() {
 @Preview(showBackground = true)
 @Composable
 fun NextButtonPreview() {
-  NextButton(
+    NextButton(
         text = stringResource(id = R.string.next),
         textColor = Color.Black,
         onClick = {}
