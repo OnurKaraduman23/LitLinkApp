@@ -2,4 +2,6 @@
 <resources>
     <color name="yellow">#FFA02A</color>
     <color name="gray_transparent">#80E4E4E6</color>
+    <color name="yellow_selection_border">#FFA02A</color>
+    <color name="yellow_selection">#E2993D</color>
 </resources>

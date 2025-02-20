@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.onuryasarkaraduman.ui.welcome.Welcome
-import com.onuryasarkaraduman.ui.welcome.welcomeScreen
-import com.onuryasarkaraduman.ui.categories_selector.CategoriesSelector
+import com.onuryasarkaraduman.ui.navigation.CategoriesSelector
+import com.onuryasarkaraduman.ui.navigation.Welcome
+import com.onuryasarkaraduman.ui.navigation.welcomeScreen
 
 @Composable
 fun AppNavGraph(

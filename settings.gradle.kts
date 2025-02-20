@@ -61,3 +61,6 @@ include(":feature:profile:ui")
 include(":feature:discover:data")
 include(":feature:discover:domain")
 include(":feature:discover:ui")
+include(":core:datastore")
+
+include(":core:datasource")
