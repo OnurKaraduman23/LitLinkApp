@@ -27,11 +27,14 @@ fun CategorySelectionTextField(
     items: List<String>,
     selectedItem: String,
     showBottomSheetState: Boolean = false,
+    onCategorySelected: (String) -> Unit,
 ) {
     var showBottomSheet by remember { mutableStateOf(showBottomSheetState) }
-    var capitalizedSelectedItem = selectedItem.split(" ").joinToString(" ") {
-        it.replaceFirstChar { c -> c.uppercaseChar() }
+    var capitalizedSelectedItem by remember {
+        mutableStateOf(selectedItem.replaceFirstChar { it.uppercaseChar() })
     }
+
+
     OutlinedTextField(
         value = capitalizedSelectedItem,
         onValueChange = { },
@@ -51,7 +54,7 @@ fun CategorySelectionTextField(
                     showBottomSheet = true
                 },
                 imageVector = Icons.Default.KeyboardArrowDown,
-                contentDescription = "Çek Statüsü ",
+                contentDescription = "Category",
                 tint = colorResource(id = R.color.yellow)
             )
         },
@@ -61,7 +64,11 @@ if (showBottomSheet)
         items = items,
         buttonText = stringResource(id = R.string.add_other_categories),
         selectedItem = selectedItem,
-        onItemSelected = { capitalizedSelectedItem = it },
+        onItemSelected = {
+            capitalizedSelectedItem =  it.replaceFirstChar { char -> char.uppercaseChar() }
+            onCategorySelected(it)
+            showBottomSheet = false
+                         },
         label = "",
         labelMapper = {it},
         onDismiss = {showBottomSheet = false},
@@ -76,5 +83,6 @@ fun CategorySelectionTextFieldPreview() {
     CategorySelectionTextField(
         items = listOf("Action", "Fantasy", "Science", "fiction"),
         selectedItem = "Action",
+        onCategorySelected = {}
     )
 }

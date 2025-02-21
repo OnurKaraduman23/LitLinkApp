@@ -17,6 +17,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -50,6 +51,9 @@ internal fun HomeScreen(
     onAction: (UiAction) -> Unit,
     onNavigateDetail: (Int) -> Unit,
 ) {
+    LaunchedEffect(uiState.userSelectedCategory) {
+        onAction(UiAction.CategorySelected(uiState.userSelectedCategory))
+    }
     val context = LocalContext.current
     uiEffect.collectWithLifecycle { effect ->
         when (effect) {
@@ -97,11 +101,18 @@ internal fun HomeScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             HeaderText(text = stringResource(id = R.string.user_category))
-            CategorySelectionTextField(
-                items = uiState.userCategoryList,
-                selectedItem = uiState.userSelectedCategory,
-                showBottomSheetState = false
-            )
+            if (uiState.userSelectedCategory.isNotEmpty()){
+                CategorySelectionTextField(
+                    items = uiState.userCategoryList,
+                    selectedItem = uiState.userSelectedCategory,
+                    showBottomSheetState = false,
+                    onCategorySelected = { selectedCategory ->
+                        onAction(HomeContract.UiAction.CategorySelected(selectedCategory))
+                    }
+                )
+            }
+
+
         }
 
 

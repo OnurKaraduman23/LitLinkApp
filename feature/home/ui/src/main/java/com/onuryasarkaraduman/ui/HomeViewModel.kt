@@ -32,11 +32,15 @@ internal class HomeViewModel @Inject constructor(
     override fun onAction(uiAction: UiAction) {
         when (uiAction) {
             is UiAction.OnClick -> {}
+            is UiAction.CategorySelected -> {
+                updateUiState { copy(userSelectedCategory = uiAction.category) }
+                getBooksByCategories(uiAction.category)
+            }
         }
     }
 
     private fun getBooksByCategories(selectedCategory: String) = viewModelScope.launch {
-        updateUiState { copy(isLoading = true) }
+        updateUiState { copy(isLoading = true,userSelectedCategory = selectedCategory) }
         getBooksByCategoriesUseCase(selectedCategory).fold(
             onSuccess = {
                 updateUiState { copy(recommendedList = it, isLoading = false) }
@@ -54,7 +58,6 @@ internal class HomeViewModel @Inject constructor(
             dataStore.getUserCategories().collect {
                 updateUiState { copy(userCategoryList = it) }
                 val selectedCategory = getRandomCategoryUseCase.execute(it)
-                updateUiState { copy(userSelectedCategory = selectedCategory) }
                 getBooksByCategories(selectedCategory = selectedCategory)
             }
 

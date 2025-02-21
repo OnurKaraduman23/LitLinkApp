@@ -13,6 +13,7 @@ internal object HomeContract {
 
     sealed interface UiAction {
         data object OnClick : UiAction
+        data class CategorySelected(val category: String) : UiAction
 
     }
 
