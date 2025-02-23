@@ -56,5 +56,9 @@ gradlePlugin {
             id = libs.plugins.litlink.jvm.library.get().pluginId
             implementationClass = "com.onuryasarkaraduman.JvmLibraryConventionPlugin"
         }
+        register("androidFirebase") {
+            id = libs.plugins.litlink.android.firebase.get().pluginId
+            implementationClass = "com.onuryasarkaraduman.AndroidApplicationFirebaseConventionPlugin"
+        }
     }
 }

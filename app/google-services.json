@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "178038609200",
+    "project_id": "litlinkapp",
+    "storage_bucket": "litlinkapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178038609200:android:6b20b07c8b840c62c464f5",
+        "android_client_info": {
+          "package_name": "com.onuryasarkaraduman.litlinkapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfUZ-3VK7Ebpb8rQNbVAKBD9Pi61Dovbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
