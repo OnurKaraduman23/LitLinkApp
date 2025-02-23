@@ -25,4 +25,9 @@ Let’s turn every page into an opportunity to connect.</string>
     <string name="self_help">Self Help</string>
     <string name="history">History</string>
     <string name="fiction">Fiction</string>
+
+
+    <string name="back_icon_description">Back Icon</string>
+
+
 </resources>

@@ -34,6 +34,7 @@ import com.onuryasarkaraduman.ui.HomeContract.UiAction
 import com.onuryasarkaraduman.ui.HomeContract.UiEffect
 import com.onuryasarkaraduman.ui.HomeContract.UiState
 import com.onuryasarkaraduman.ui.components.AppLoading
+import com.onuryasarkaraduman.ui.components.AppToolbar
 import com.onuryasarkaraduman.ui.components.CategorySelectionTextField
 import com.onuryasarkaraduman.ui.components.EmptyFriendsBooksContent
 import com.onuryasarkaraduman.ui.components.EmptyUserCategoriesScreenContent
@@ -51,82 +52,92 @@ internal fun HomeScreen(
     onAction: (UiAction) -> Unit,
     onNavigateDetail: (Int) -> Unit,
 ) {
+    val context = LocalContext.current
+
     LaunchedEffect(uiState.userSelectedCategory) {
         onAction(UiAction.CategorySelected(uiState.userSelectedCategory))
     }
-    val context = LocalContext.current
+
     uiEffect.collectWithLifecycle { effect ->
         when (effect) {
             is UiEffect.ShowError -> {
                 Toast.makeText(context, effect.message, Toast.LENGTH_SHORT).show()
             }
 
-            is UiEffect.NavigateDetail -> {
-//                onNavigateDetail(effect.id)
-            }
+            is UiEffect.NavigateDetail -> onNavigateDetail(effect.id)
         }
     }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(vertical = 8.dp, horizontal = 16.dp)
-            .verticalScroll(
-                rememberScrollState()
-            ),
-        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        AppToolbar(title = stringResource(id = R.string.welcome))
 
-        ) {
-        Spacer(modifier = Modifier.height(12.dp))
-        HeaderText(
-            modifier = Modifier.align(Alignment.Start),
-            text = stringResource(id = R.string.welcome)
-        )
+        HomeContent(uiState, onAction, onNavigateDetail)
+    }
+}
+
+@Composable
+private fun HomeContent(
+    uiState: UiState,
+    onAction: (UiAction) -> Unit,
+    onNavigateDetail: (Int) -> Unit,
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp)
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
 
         HorizontalDivider(
             modifier = Modifier.padding(vertical = 12.dp),
             thickness = 1.dp,
-            color = Color.Black,
+            color = Color.Black
         )
 
         FriendsSection()
         HorizontalDivider(
             modifier = Modifier.padding(vertical = 12.dp),
             thickness = 1.dp,
-            color = colorResource(id = R.color.yellow),
+            color = colorResource(id = R.color.yellow)
         )
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             HeaderText(text = stringResource(id = R.string.user_category))
-            if (uiState.userSelectedCategory.isNotEmpty()){
+            if (uiState.userSelectedCategory.isNotEmpty()) {
                 CategorySelectionTextField(
                     items = uiState.userCategoryList,
                     selectedItem = uiState.userSelectedCategory,
                     showBottomSheetState = false,
                     onCategorySelected = { selectedCategory ->
-                        onAction(HomeContract.UiAction.CategorySelected(selectedCategory))
+                        onAction(UiAction.CategorySelected(selectedCategory))
                     }
                 )
             }
-
-
+        }
+        Spacer(modifier = Modifier.height(12.dp))
+        if (uiState.isLoading) {
+            AppLoading()
         }
 
-
-        Spacer(modifier = Modifier.height(12.dp))
-        if (uiState.isLoading) AppLoading()
         UserCategorySection(
             recommendedList = uiState.recommendedList,
-            onItemClick = {}
+            onItemClick = { selectedId ->
+                onNavigateDetail(selectedId)
+            }
         )
         HorizontalDivider(
             modifier = Modifier.padding(vertical = 12.dp),
             thickness = 2.dp,
-            color = colorResource(id = R.color.yellow),
+            color = colorResource(id = R.color.yellow)
         )
+
         HeaderText(
             modifier = Modifier.align(Alignment.Start),
             text = stringResource(id = R.string.friends_books)
@@ -134,12 +145,15 @@ internal fun HomeScreen(
         Spacer(modifier = Modifier.height(12.dp))
         FriendsBooksSection(
             friendsBooksList = uiState.friendsBooksList,
-            onItemClick = {},
-            onClickAddFriends = {}
+            onItemClick = { selectedId ->
+                onNavigateDetail(selectedId)
+            },
+            onClickAddFriends = {
+
+            }
         )
     }
 }
-
 
 @Composable
 internal fun ColumnScope.UserCategorySection(
