@@ -50,7 +50,7 @@ internal fun HomeScreen(
     uiState: UiState,
     uiEffect: Flow<UiEffect>,
     onAction: (UiAction) -> Unit,
-    onNavigateDetail: (Int) -> Unit,
+    onNavigateDetail: (String) -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -81,7 +81,7 @@ internal fun HomeScreen(
 private fun HomeContent(
     uiState: UiState,
     onAction: (UiAction) -> Unit,
-    onNavigateDetail: (Int) -> Unit,
+    onNavigateDetail: (String) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -129,7 +129,7 @@ private fun HomeContent(
         UserCategorySection(
             recommendedList = uiState.recommendedList,
             onItemClick = { selectedId ->
-                onNavigateDetail(selectedId)
+                onAction(UiAction.OnBooksClick(selectedId))
             }
         )
         HorizontalDivider(
@@ -158,7 +158,7 @@ private fun HomeContent(
 @Composable
 internal fun ColumnScope.UserCategorySection(
     recommendedList: List<CategoriesRecommendedModel>,
-    onItemClick: (Int) -> Unit,
+    onItemClick: (String) -> Unit,
 ) {
     if (recommendedList.isEmpty()) {
         EmptyUserCategoriesScreenContent()
@@ -174,7 +174,7 @@ internal fun ColumnScope.UserCategorySection(
             items(recommendedList) {
                 HomeRecommendedCategoriesCard(
                     book = it,
-                    onClick = {}
+                    onClick = {onItemClick(it.id)}
                 )
 
 
@@ -186,7 +186,7 @@ internal fun ColumnScope.UserCategorySection(
 @Composable
 internal fun ColumnScope.FriendsBooksSection(
     friendsBooksList: List<CategoriesRecommendedModel>,
-    onItemClick: (Int) -> Unit,
+    onItemClick: (String) -> Unit,
     onClickAddFriends: () -> Unit,
 ) {
     if (friendsBooksList.isEmpty()) {

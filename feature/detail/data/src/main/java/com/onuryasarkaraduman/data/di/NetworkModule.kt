@@ -1,6 +1,6 @@
-package com.onuryasarkaraduman.feature.home.data.di
+package com.onuryasarkaraduman.feature.detail.data.di
 
-import com.onuryasarkaraduman.data.source.HomeApiService
+import com.onuryasarkaraduman.data.source.BookDetailsApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,11 +11,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
-
     @Provides
     @Singleton
-    fun provideHomeApiService(retrofit: Retrofit): HomeApiService {
-        return retrofit.create(HomeApiService::class.java)
+    fun provideDetailsApiService(retrofit: Retrofit): BookDetailsApiService {
+        return retrofit.create(BookDetailsApiService::class.java)
     }
 
 

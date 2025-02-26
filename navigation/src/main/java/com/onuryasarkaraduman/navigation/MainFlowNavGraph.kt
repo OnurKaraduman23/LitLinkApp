@@ -3,6 +3,8 @@ package com.onuryasarkaraduman.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
+import com.onuryasarkaraduman.ui.Detail
+import com.onuryasarkaraduman.ui.detailScreen
 import com.onuryasarkaraduman.ui.navigation.Home
 import com.onuryasarkaraduman.ui.navigation.Screen
 import com.onuryasarkaraduman.ui.navigation.discoverScreen
@@ -17,10 +19,13 @@ object MainFlow : Screen
 
 internal fun NavGraphBuilder.mainFlowNavigation(navController: NavHostController) {
     navigation<MainFlow>(Home) {
-        homeScreen()
+        homeScreen(
+            onNavigateDetail = {navController.navigate(Detail(it))}
+        )
         searchScreen()
         profileScreen()
         favoritesScreen()
         discoverScreen()
+        detailScreen()
     }
 }

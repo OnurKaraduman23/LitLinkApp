@@ -37,6 +37,7 @@ dependencies {
     implementation(projects.core.ui)
 
     implementation(projects.feature.home.data)
+    implementation(projects.feature.detail.data)
 
     implementation(libs.navigation.compose)
 
