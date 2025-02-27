@@ -28,6 +28,10 @@ Let’s turn every page into an opportunity to connect.</string>
 
 
     <string name="back_icon_description">Back Icon</string>
+    <string name="detail">Detail</string>
+    <string name="details">Details</string>
+    <string name="readers">Readers</string>
+    <string name="similiar_books">Similar Books</string>
 
 
 </resources>

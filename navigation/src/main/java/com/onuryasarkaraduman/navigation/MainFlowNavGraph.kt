@@ -3,8 +3,8 @@ package com.onuryasarkaraduman.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
-import com.onuryasarkaraduman.ui.Detail
-import com.onuryasarkaraduman.ui.detailScreen
+import com.onuryasarkaraduman.ui.navigation.Detail
+import com.onuryasarkaraduman.ui.navigation.detailScreen
 import com.onuryasarkaraduman.ui.navigation.Home
 import com.onuryasarkaraduman.ui.navigation.Screen
 import com.onuryasarkaraduman.ui.navigation.discoverScreen
@@ -26,6 +26,8 @@ internal fun NavGraphBuilder.mainFlowNavigation(navController: NavHostController
         profileScreen()
         favoritesScreen()
         discoverScreen()
-        detailScreen()
+        detailScreen(
+            onNavigateBack = {navController.popBackStack()}
+        )
     }
 }

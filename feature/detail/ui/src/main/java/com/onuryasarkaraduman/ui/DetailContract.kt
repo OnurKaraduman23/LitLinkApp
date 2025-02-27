@@ -10,11 +10,13 @@ internal object DetailContract {
 
     sealed interface UiAction {
         data object OnClick : UiAction
+        data object OnBackClick: UiAction
     }
 
-    sealed interface UIEffect {
-        data class ShowError(val message: String) : UIEffect
-        data object NavigateOtherScreen : UIEffect
+    sealed interface UiEffect {
+        data class ShowError(val message: String) : UiEffect
+        data object NavigateOtherScreen : UiEffect
+        data object NavigateBack : UiEffect
     }
 
 }

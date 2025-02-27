@@ -12,16 +12,19 @@ import com.onuryasarkaraduman.core.ui.R
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun AppAsyncImage(
+    modifier: Modifier = Modifier,
     imageUrl: String,
-    contentDescription: String? = null
+    contentDescription: String? = null,
+    size: Int = 175
 ) {
     GlideImage(
+        modifier = modifier
+            .size(size.dp),
         model = imageUrl,
         contentDescription = "Product thumbnail image",
         contentScale = ContentScale.Fit,
-        modifier = Modifier
-            .size(175.dp)
-    ) {
+
+        ) {
         it.load(imageUrl)
             .placeholder(R.drawable.art)
             .error(R.drawable.art)

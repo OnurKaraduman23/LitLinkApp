@@ -78,7 +78,7 @@ internal fun HomeScreen(
 }
 
 @Composable
-private fun HomeContent(
+internal fun HomeContent(
     uiState: UiState,
     onAction: (UiAction) -> Unit,
     onNavigateDetail: (String) -> Unit,
@@ -230,7 +230,7 @@ internal fun ColumnScope.FriendsSection() {
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview() {
+internal fun HomeScreenPreview() {
 
     HomeScreen(
         uiState = UiState(),

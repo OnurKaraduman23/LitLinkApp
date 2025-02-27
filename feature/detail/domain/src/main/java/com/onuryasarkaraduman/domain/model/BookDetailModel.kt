@@ -5,6 +5,7 @@ data class BookDetailModel(
     val bookTitle: String,
     val description: String,
     val vote: Float,
+    val authors: String,
     val smallImageUrl: String,
     val mediumImageUrl: String,
     val largeImageUrl: String,

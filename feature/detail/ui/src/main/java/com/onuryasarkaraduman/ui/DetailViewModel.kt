@@ -7,11 +7,12 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.onuryasarkaraduman.common.fold
 import com.onuryasarkaraduman.domain.use_case.GetBookDetailsUseCase
-import com.onuryasarkaraduman.ui.DetailContract.UIEffect
+import com.onuryasarkaraduman.ui.DetailContract.UiEffect
 import com.onuryasarkaraduman.ui.DetailContract.UiAction
 import com.onuryasarkaraduman.ui.DetailContract.UiState
 import com.onuryasarkaraduman.ui.delegate.mvi.MVI
 import com.onuryasarkaraduman.ui.delegate.mvi.mvi
+import com.onuryasarkaraduman.ui.navigation.Detail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,7 +22,7 @@ internal class DetailViewModel @Inject constructor(
     private val getBookDetailsUseCase: GetBookDetailsUseCase,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel(),
-    MVI<UiState, UiAction, UIEffect> by mvi(UiState()) {
+    MVI<UiState, UiAction, UiEffect> by mvi(UiState()) {
 
 
     init {
@@ -30,9 +31,13 @@ internal class DetailViewModel @Inject constructor(
     }
 
     override fun onAction(uiAction: UiAction) {
-        when (uiAction) {
-            is UiAction.OnClick -> {}
+        viewModelScope.launch{
+            when (uiAction) {
+                is UiAction.OnClick -> {}
+                is UiAction.OnBackClick -> emitUiEffect(UiEffect.NavigateBack)
+            }
         }
+
     }
 
     private fun getBooksDetail(bookId: String) = viewModelScope.launch {
