@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.onuryasarkaraduman.core.ui.R
 import com.onuryasarkaraduman.domain.model.CategoriesRecommendedModel
@@ -124,14 +125,16 @@ internal fun HomeContent(
         Spacer(modifier = Modifier.height(12.dp))
         if (uiState.isLoading) {
             AppLoading()
+        } else {
+            UserCategorySection(
+                recommendedList = uiState.recommendedList,
+                onItemClick = { selectedId ->
+                    onAction(UiAction.OnBooksClick(selectedId))
+                }
+            )
         }
 
-        UserCategorySection(
-            recommendedList = uiState.recommendedList,
-            onItemClick = { selectedId ->
-                onAction(UiAction.OnBooksClick(selectedId))
-            }
-        )
+
         HorizontalDivider(
             modifier = Modifier.padding(vertical = 12.dp),
             thickness = 2.dp,
@@ -174,7 +177,7 @@ internal fun ColumnScope.UserCategorySection(
             items(recommendedList) {
                 HomeRecommendedCategoriesCard(
                     book = it,
-                    onClick = {onItemClick(it.id)}
+                    onClick = { onItemClick(it.id) }
                 )
 
 
@@ -230,10 +233,12 @@ internal fun ColumnScope.FriendsSection() {
 
 @Preview(showBackground = true)
 @Composable
-internal fun HomeScreenPreview() {
+internal fun HomeScreenPreview(
+    @PreviewParameter(HomePreviewProvider::class) uiState: UiState,
+) {
 
     HomeScreen(
-        uiState = UiState(),
+        uiState = uiState,
         uiEffect = flow { },
         onAction = {},
         onNavigateDetail = {}
