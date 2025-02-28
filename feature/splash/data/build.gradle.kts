@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.litlink.android.library)
     alias(libs.plugins.litlink.hilt)
     alias(libs.plugins.litlink.retrofit)
+    alias(libs.plugins.litlink.android.firebase)
 }
 
 android {

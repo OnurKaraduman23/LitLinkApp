@@ -32,6 +32,7 @@ internal class CategoriesSelectorViewModel @Inject constructor(
             .filterIndexed { index, _ -> selectedStates[index] }
             .map { it.value }
         dataStore.saveCategories(selectedCategories)
+        dataStore.saveOnboardingShowState(isShowState = true)
         emitUiEffect(UiEffect.GoToNextScreen)
     }
 

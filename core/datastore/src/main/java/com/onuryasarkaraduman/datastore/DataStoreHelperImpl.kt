@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import com.onuryasarkaraduman.datastore.PreferencesKeys.CATEGORIES_LIST
+import com.onuryasarkaraduman.datastore.PreferencesKeys.ONBOARDING_STATE
 import com.onuryasarkaraduman.datastore.PreferencesKeys.STORE_NAME
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -22,9 +23,21 @@ internal class DataStoreHelperImpl @Inject constructor(private val context: Cont
         }
     }
 
+    override suspend fun saveOnboardingShowState(isShowState: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[ONBOARDING_STATE] = isShowState
+        }
+    }
+
     override fun getUserCategories(): Flow<List<String>> {
         return context.dataStore.data.map { preferences ->
             preferences[CATEGORIES_LIST]?.split(",") ?: emptyList()
+        }
+    }
+
+    override fun getOnboardingState(): Flow<Boolean> {
+        return context.dataStore.data.map { preferences ->
+            preferences[ONBOARDING_STATE] ?: false
         }
     }
 }

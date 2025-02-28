@@ -17,6 +17,7 @@ android {
 
 dependencies {
     implementation(projects.feature.splash.domain)
+    implementation(projects.core.datastore)
 
 
 }
