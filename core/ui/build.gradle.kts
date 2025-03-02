@@ -1,6 +1,9 @@
+import org.gradle.kotlin.dsl.android
+
 plugins {
     alias(libs.plugins.litlink.android.library)
     alias(libs.plugins.litlink.android.library.compose)
+
 }
 
 android {

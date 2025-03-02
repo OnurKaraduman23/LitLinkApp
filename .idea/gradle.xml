@@ -61,6 +61,10 @@
             <option value="$PROJECT_DIR$/feature/search/data" />
             <option value="$PROJECT_DIR$/feature/search/domain" />
             <option value="$PROJECT_DIR$/feature/search/ui" />
+            <option value="$PROJECT_DIR$/feature/splash" />
+            <option value="$PROJECT_DIR$/feature/splash/data" />
+            <option value="$PROJECT_DIR$/feature/splash/domain" />
+            <option value="$PROJECT_DIR$/feature/splash/ui" />
             <option value="$PROJECT_DIR$/navigation" />
           </set>
         </option>
