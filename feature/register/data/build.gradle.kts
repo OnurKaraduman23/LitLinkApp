@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.litlink.feature.detail.data"
+    namespace = "com.litlink.feature.register.data"
 }
 
 dependencies {
-    implementation(projects.feature.detail.domain)
+    implementation(projects.feature.register.domain)
     implementation(projects.core.network)
     implementation(projects.core.common)
 }

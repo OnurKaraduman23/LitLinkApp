@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.onuryasarkaraduman.feature.detail.ui"
+    namespace = "com.onuryasarkaraduman.feature.register.ui"
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -16,5 +16,5 @@ android {
 }
 
 dependencies {
-    implementation(projects.feature.detail.domain)
+    implementation(projects.feature.register.domain)
 }
