@@ -17,4 +17,6 @@ android {
 
 dependencies {
     implementation(projects.feature.register.domain)
+    implementation(projects.core.network)
+    implementation(projects.core.datasource)
 }

@@ -20,6 +20,8 @@ dependencies {
     implementation(projects.feature.discover.ui)
     implementation(projects.feature.onboarding.ui)
     implementation(projects.feature.splash.ui)
+    implementation(projects.feature.login.ui)
+    implementation(projects.feature.register.ui)
 
     implementation(projects.core.ui)
 
