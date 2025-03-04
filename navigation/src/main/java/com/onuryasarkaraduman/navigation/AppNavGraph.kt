@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.onuryasarkaraduman.ui.navigation.CategoriesSelector
 import com.onuryasarkaraduman.ui.navigation.Home
+import com.onuryasarkaraduman.ui.navigation.Login
 import com.onuryasarkaraduman.ui.navigation.Splash
 import com.onuryasarkaraduman.ui.navigation.Welcome
 import com.onuryasarkaraduman.ui.navigation.splashScreen
@@ -24,7 +25,7 @@ fun AppNavGraph(
 //        homeScreen()
 //        welcomeScreen(onNavigateCategoriesSelector = { navController.navigate(CategoriesSelector) })
         splashScreen(
-            onNavigateLogin = {},
+            onNavigateLogin = {navController.navigate(Login)},
             onNavigateHome = {navController.navigate(Home)},
             onNavigateOnboarding = {navController.navigate(Welcome)}
         )

@@ -12,7 +12,6 @@ fun NavGraphBuilder.welcomeScreen(
     onNavigateCategoriesSelector: () -> Unit,
 ) {
     composable<Welcome> {
-
         WelcomeScreen(
             onNavigateCategoriesSelector = onNavigateCategoriesSelector
         )

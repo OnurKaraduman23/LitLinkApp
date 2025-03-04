@@ -2,6 +2,7 @@ package com.onuryasarkaraduman.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.onuryasarkaraduman.auth.FirebaseAuthRepository
 import com.onuryasarkaraduman.datastore.DataStoreHelper
 import com.onuryasarkaraduman.ui.SplashContract.UiEffect
 import com.onuryasarkaraduman.ui.delegate.mvi.MVI
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class SplashViewModel @Inject constructor(
     private val dataStore: DataStoreHelper,
+    private val firebaseAuth: FirebaseAuthRepository,
 ) : ViewModel(),
     MVI<Unit, Unit, UiEffect> by mvi(Unit) {
 
@@ -30,7 +32,18 @@ internal class SplashViewModel @Inject constructor(
     }
 
     private fun screenTransition(onBoardingState: Boolean) = viewModelScope.launch {
-        emitUiEffect(if (onBoardingState) UiEffect.NavigateHome else UiEffect.NavigateOnboarding)
+        emitUiEffect(
+            if (onBoardingState && isLoggedIn()) {
+                UiEffect.NavigateHome
+
+            } else if (onBoardingState && !isLoggedIn()) {
+                UiEffect.NavigateLogin
+            } else UiEffect.NavigateOnboarding
+        )
+    }
+
+    private fun isLoggedIn(): Boolean {
+        return firebaseAuth.isUserLoggedIn()
     }
 
 
