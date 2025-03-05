@@ -17,6 +17,7 @@ android {
 
 dependencies {
     implementation(projects.feature.profile.domain)
+    implementation(projects.core.network)
 
 
 }

@@ -17,4 +17,5 @@ android {
 
 dependencies {
     implementation(projects.feature.login.domain)
+    implementation(projects.core.network)
 }

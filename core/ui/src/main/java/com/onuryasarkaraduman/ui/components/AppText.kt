@@ -90,6 +90,16 @@ fun AppTextTitle(
 
 }
 
+@Composable
+fun WarningTextMessage(warningMessage: String) {
+    Text(
+        text = warningMessage,
+        color = Color.Red,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Bold
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
 fun HeaderTextPreview() {
@@ -113,5 +123,13 @@ fun AppTextTitlePreview() {
 
     AppTextTitle(
         text = "AppText"
+    )
+}
+@Preview(showBackground = true)
+@Composable
+fun WarningTextMessagePreview() {
+
+    WarningTextMessage(
+        warningMessage = "Warning"
     )
 }

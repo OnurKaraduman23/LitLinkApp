@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.onuryasarkaraduman.auth.FirebaseAuthRepository
 import com.onuryasarkaraduman.common.fold
-import com.onuryasarkaraduman.firestore.UserRepository
 import com.onuryasarkaraduman.ui.RegisterContract.UiAction
 import com.onuryasarkaraduman.ui.RegisterContract.UiEffect
 import com.onuryasarkaraduman.ui.RegisterContract.UiState
@@ -23,10 +22,7 @@ internal class RegisterViewModel @Inject constructor(
     override fun onAction(uiAction: UiAction) {
         viewModelScope.launch {
             when (uiAction) {
-                is UiAction.OnRegisterClick -> {
-                    register()
-                }
-
+                is UiAction.OnRegisterClick -> register()
                 is UiAction.OnBackClick -> {}
                 is UiAction.OnLoginClick -> {}
                 is UiAction.OnEmailChange -> updateUiState { copy(email = uiAction.email) }
@@ -50,6 +46,7 @@ internal class RegisterViewModel @Inject constructor(
                 emitUiEffect(UiEffect.NavigateHome)
             },
             onError = {
+                updateUiState { copy(isLoading = false) }
                 Log.e("Dante", "Error ${it.message}")
             }
         )

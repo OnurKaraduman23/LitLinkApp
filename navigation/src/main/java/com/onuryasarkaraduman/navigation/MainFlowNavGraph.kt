@@ -6,6 +6,7 @@ import androidx.navigation.compose.navigation
 import com.onuryasarkaraduman.ui.navigation.Detail
 import com.onuryasarkaraduman.ui.navigation.detailScreen
 import com.onuryasarkaraduman.ui.navigation.Home
+import com.onuryasarkaraduman.ui.navigation.Login
 import com.onuryasarkaraduman.ui.navigation.Screen
 import com.onuryasarkaraduman.ui.navigation.discoverScreen
 import com.onuryasarkaraduman.ui.navigation.favoritesScreen
@@ -23,7 +24,15 @@ internal fun NavGraphBuilder.mainFlowNavigation(navController: NavHostController
             onNavigateDetail = {navController.navigate(Detail(it))}
         )
         searchScreen()
-        profileScreen()
+        profileScreen(
+            onNavigateLogin = {
+                navController.navigate(Login){
+                    popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                    launchSingleTop = true
+                }
+
+            }
+        )
         favoritesScreen()
         discoverScreen()
         detailScreen(

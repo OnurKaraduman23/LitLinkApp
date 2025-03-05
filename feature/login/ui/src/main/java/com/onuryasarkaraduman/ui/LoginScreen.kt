@@ -34,6 +34,7 @@ import com.onuryasarkaraduman.ui.LoginContract.UiAction
 import com.onuryasarkaraduman.ui.LoginContract.UiEffect
 import com.onuryasarkaraduman.ui.LoginContract.UiState
 import com.onuryasarkaraduman.ui.components.AppToolbar
+import com.onuryasarkaraduman.ui.extensions.collectWithLifecycle
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -46,6 +47,15 @@ internal fun LoginScreen(
     onNavigateRegister: () -> Unit,
     onNavigateHome: () -> Unit,
 ) {
+
+    uiEffect.collectWithLifecycle { effect ->
+        when (effect) {
+            UiEffect.NavigateBack -> {}
+            UiEffect.NavigateHome -> onNavigateHome()
+            UiEffect.NavigateRegister -> onNavigateRegister()
+        }
+
+    }
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -56,10 +66,10 @@ internal fun LoginScreen(
         )
         LoginContent(
             uiState = uiState,
-            onEmailChange = {},
-            onPasswordChange = {},
-            onRegisterClick = {},
-            onLoginClick = {}
+            onEmailChange = { onAction(UiAction.OnEmailChange(it)) },
+            onPasswordChange = { onAction(UiAction.OnPasswordChange(it)) },
+            onRegisterClick = { onAction(UiAction.OnRegisterClick) },
+            onLoginClick = { onAction(UiAction.OnLoginClick) }
         )
     }
 }
@@ -77,7 +87,8 @@ internal fun LoginContent(
         password = uiState.password,
         onEmailChange = { onEmailChange(it) },
         onPasswordChange = { onPasswordChange(it) },
-        onLogInClick = { onLoginClick },
+        onLogInClick = { onLoginClick() },
+        onRegisterClick = { onRegisterClick() }
     )
 }
 
@@ -88,6 +99,7 @@ internal fun EmailAndPasswordContent(
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     onLogInClick: () -> Unit,
+    onRegisterClick: () -> Unit,
 ) {
     var passwordVisibility by remember { mutableStateOf(false) }
 
@@ -133,11 +145,16 @@ internal fun EmailAndPasswordContent(
         Text(text = "Forgot Password?", color = colorResource(id = R.color.gray_transparent))
     }
 
-    Spacer(modifier = Modifier.height(32.dp))
+    Spacer(modifier = Modifier.height(16.dp))
 
+
+    Button(onClick = { onRegisterClick() }) {
+        Text(text = "Register")
+    }
+    Spacer(modifier = Modifier.height(16.dp))
 
     Button(onClick = onLogInClick) {
-        Text(text = "Sign In")
+        Text(text = "Log In")
     }
 
 
