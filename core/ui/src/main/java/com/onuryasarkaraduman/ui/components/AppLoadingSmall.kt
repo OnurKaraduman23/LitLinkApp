@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun AppLoading() {
+fun AppLoadingSmall() {
     Box(
         modifier = Modifier
             .fillMaxWidth()

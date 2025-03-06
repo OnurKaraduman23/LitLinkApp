@@ -29,7 +29,7 @@ import com.onuryasarkaraduman.ui.DetailContract.UiAction
 import com.onuryasarkaraduman.ui.DetailContract.UiEffect
 import com.onuryasarkaraduman.ui.DetailContract.UiState
 import com.onuryasarkaraduman.ui.components.AppAsyncImage
-import com.onuryasarkaraduman.ui.components.AppLoading
+import com.onuryasarkaraduman.ui.components.AppLoadingSmall
 import com.onuryasarkaraduman.ui.components.AppRatingBar
 import com.onuryasarkaraduman.ui.components.AppText
 import com.onuryasarkaraduman.ui.components.AppTextTitle
@@ -73,7 +73,7 @@ internal fun DetailScreen(
             thickness = 1.dp,
             color = Color.Black
         )
-        if (uiState.isLoading) AppLoading()
+        if (uiState.isLoading) AppLoadingSmall()
         if (uiState.bookDetails == null) EmptyScreenContent()
         DetailContent(
             uiState = uiState,
@@ -150,7 +150,7 @@ internal fun BookDetailsTabs(bookDetail: BookDetailModel) {
     val tabs = listOf(
         stringResource(id = R.string.details),
         stringResource(id = R.string.readers),
-        stringResource(id = R.string.similiar_books)
+        stringResource(id = R.string.similar_books)
     )
 
     Column(

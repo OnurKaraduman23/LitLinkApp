@@ -17,9 +17,7 @@ object LoginFlow : Screen
 internal fun NavGraphBuilder.loginFlowNavigation(navController: NavHostController) {
     navigation<LoginFlow>(Login) {
 
-
         loginScreen(
-            onNavigateBack = { navController.popBackStack() },
             onNavigateRegister = { navController.navigate(Register) },
             onNavigateHome = { navController.navigate(Home) }
         )

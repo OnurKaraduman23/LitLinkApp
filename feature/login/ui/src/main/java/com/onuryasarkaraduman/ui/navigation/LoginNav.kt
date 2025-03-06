@@ -13,7 +13,6 @@ import kotlinx.serialization.Serializable
 data object Login : Screen
 
 fun NavGraphBuilder.loginScreen(
-    onNavigateBack: () -> Unit,
     onNavigateRegister: () -> Unit,
     onNavigateHome: () -> Unit,
 ) {
@@ -25,7 +24,6 @@ fun NavGraphBuilder.loginScreen(
             uiState = uiState,
             uiEffect = uiEffect,
             onAction = viewModel::onAction,
-            onNavigateBack = onNavigateBack,
             onNavigateRegister = onNavigateRegister,
             onNavigateHome = onNavigateHome
         )

@@ -23,8 +23,8 @@ internal class RegisterViewModel @Inject constructor(
         viewModelScope.launch {
             when (uiAction) {
                 is UiAction.OnRegisterClick -> register()
-                is UiAction.OnBackClick -> {}
-                is UiAction.OnLoginClick -> {}
+                is UiAction.OnBackClick -> emitUiEffect(UiEffect.NavigateBack)
+                is UiAction.OnLoginClick -> emitUiEffect(UiEffect.NavigateLogin)
                 is UiAction.OnEmailChange -> updateUiState { copy(email = uiAction.email) }
                 is UiAction.OnPasswordChange -> updateUiState { copy(password = uiAction.password) }
                 is UiAction.OnUsernameChange -> updateUiState { copy(username = uiAction.username) }
@@ -36,20 +36,25 @@ internal class RegisterViewModel @Inject constructor(
 
     private fun register() = viewModelScope.launch {
         updateUiState { copy(isLoading = true) }
-        firebaseAuth.signUp(
-            email = uiState.value.email,
-            password = uiState.value.password,
-            userName = uiState.value.username
-        ).fold(
-            onSuccess = {
-                updateUiState { copy(isLoading = false) }
-                emitUiEffect(UiEffect.NavigateHome)
-            },
-            onError = {
-                updateUiState { copy(isLoading = false) }
-                Log.e("Dante", "Error ${it.message}")
-            }
-        )
+        if (uiState.value.password == uiState.value.passwordAgain) {
+            firebaseAuth.signUp(
+                email = uiState.value.email,
+                password = uiState.value.password,
+                userName = uiState.value.username
+            ).fold(
+                onSuccess = {
+                    updateUiState { copy(isLoading = false) }
+                    emitUiEffect(UiEffect.NavigateHome)
+                },
+                onError = {
+                    updateUiState { copy(isLoading = false) }
+                    Log.e("Dante", "Error ${it.message}")
+                }
+            )
+        } else {
+//            emitUiEffect(UiEffect.ShowErrorMessage("Passwords do not match"))
+            Log.e("Dante", "Passwords do not match")
+        }
 
 
     }

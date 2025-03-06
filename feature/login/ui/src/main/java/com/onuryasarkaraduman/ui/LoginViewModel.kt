@@ -24,7 +24,6 @@ internal class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             when (uiAction) {
                 is UiAction.OnLoginClick -> login()
-                is UiAction.OnBackClick -> {}
                 is UiAction.OnRegisterClick -> emitUiEffect(UiEffect.NavigateRegister)
                 is UiAction.OnForgotPasswordClick -> {}
                 is UiAction.OnEmailChange -> updateUiState { copy(email = uiAction.email) }

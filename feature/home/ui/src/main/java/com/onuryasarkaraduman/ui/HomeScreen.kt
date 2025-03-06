@@ -34,7 +34,7 @@ import com.onuryasarkaraduman.domain.model.CategoriesRecommendedModel
 import com.onuryasarkaraduman.ui.HomeContract.UiAction
 import com.onuryasarkaraduman.ui.HomeContract.UiEffect
 import com.onuryasarkaraduman.ui.HomeContract.UiState
-import com.onuryasarkaraduman.ui.components.AppLoading
+import com.onuryasarkaraduman.ui.components.AppLoadingSmall
 import com.onuryasarkaraduman.ui.components.AppToolbar
 import com.onuryasarkaraduman.ui.components.CategorySelectionTextField
 import com.onuryasarkaraduman.ui.components.EmptyFriendsBooksContent
@@ -124,7 +124,7 @@ internal fun HomeContent(
         }
         Spacer(modifier = Modifier.height(12.dp))
         if (uiState.isLoading) {
-            AppLoading()
+            AppLoadingSmall()
         } else {
             UserCategorySection(
                 recommendedList = uiState.recommendedList,

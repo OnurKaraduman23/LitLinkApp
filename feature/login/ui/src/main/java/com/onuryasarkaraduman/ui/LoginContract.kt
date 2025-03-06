@@ -8,7 +8,6 @@ internal object LoginContract {
     )
 
     sealed interface UiAction {
-        data object OnBackClick : UiAction
         data class OnEmailChange(val email: String) : UiAction
         data class OnPasswordChange(val password: String) : UiAction
         data object OnLoginClick : UiAction
@@ -17,7 +16,6 @@ internal object LoginContract {
     }
 
     sealed interface UiEffect {
-        data object NavigateBack : UiEffect
         data object NavigateRegister : UiEffect
         data object NavigateHome : UiEffect
     }

@@ -23,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.onuryasarkaraduman.core.ui.R
@@ -122,19 +123,21 @@ fun GlowingButton(
 fun LitLinkAppButton(
     text: String,
     textColor: Color = Color.Black,
+    containerColor: Int = R.color.yellow,
     textFontWeight: FontWeight = FontWeight.Bold,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
     textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
+    padding: Dp = 26.dp
 ) {
     OutlinedButton(
         modifier = modifier
             .fillMaxWidth()
-            .padding(26.dp),
+            .padding(padding),
         onClick = { onClick() },
         colors = ButtonDefaults.buttonColors(
-            containerColor = colorResource(id = R.color.yellow),
+            containerColor = colorResource(id = containerColor),
             contentColor = Color.Red,
             disabledContainerColor = Color.Gray,
             disabledContentColor = Color.Black
