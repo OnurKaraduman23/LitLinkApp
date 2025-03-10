@@ -33,6 +33,8 @@ firebase = "33.10.0"
 firestore = "25.1.2"
 googleServices = "4.4.2"
 
+lottie_version = "4.0.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -90,6 +92,8 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glide_compose" }
 
 datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
+
+lottie-animation = {group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie_version"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

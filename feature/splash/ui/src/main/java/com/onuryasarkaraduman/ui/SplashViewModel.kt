@@ -25,7 +25,7 @@ internal class SplashViewModel @Inject constructor(
     }
 
     private fun checkOnboardingState() = viewModelScope.launch {
-        delay(2000)
+        delay(3000)
         dataStore.getOnboardingState().collect { state ->
             screenTransition(onBoardingState = state)
         }
