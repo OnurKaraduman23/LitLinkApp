@@ -5,4 +5,5 @@
     <color name="yellow_selection_border">#FFA02A</color>
     <color name="yellow_selection">#E2993D</color>
     <color name="green">#09EF42</color>
+    <color name="red">#DD0808</color>
 </resources>
