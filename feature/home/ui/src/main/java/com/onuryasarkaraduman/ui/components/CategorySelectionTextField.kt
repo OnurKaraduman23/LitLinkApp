@@ -2,6 +2,8 @@ package com.onuryasarkaraduman.ui.components
 
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
@@ -21,7 +23,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.onuryasarkaraduman.core.ui.R
-
 @Composable
 fun CategorySelectionTextField(
     items: List<String>,
@@ -34,48 +35,55 @@ fun CategorySelectionTextField(
         mutableStateOf(selectedItem.replaceFirstChar { it.uppercaseChar() })
     }
 
-
-    OutlinedTextField(
-        value = capitalizedSelectedItem,
-        onValueChange = { },
-        readOnly = true,
-        colors = TextFieldDefaults.colors(
-            unfocusedContainerColor = Color.White,
-            unfocusedIndicatorColor = colorResource(id = R.color.yellow),
-
-            ),
-        placeholder = { },
+    Box(
         modifier = Modifier
             .width(150.dp)
-            .height(50.dp),
-        trailingIcon = {
-            Icon(
-                modifier = Modifier.clickable {
+            .height(50.dp)
+    ) {
+        OutlinedTextField(
+            value = capitalizedSelectedItem,
+            onValueChange = { },
+            readOnly = true,
+            colors = TextFieldDefaults.colors(
+                unfocusedContainerColor = Color.White,
+                unfocusedIndicatorColor = colorResource(id = R.color.yellow)
+            ),
+            placeholder = { },
+            modifier = Modifier.fillMaxSize(),
+            trailingIcon = {
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowDown,
+                    contentDescription = "Category",
+                    tint = colorResource(id = R.color.yellow)
+                )
+            },
+        )
+
+        Box(
+            modifier = Modifier
+                .matchParentSize()
+                .clickable {
                     showBottomSheet = true
-                },
-                imageVector = Icons.Default.KeyboardArrowDown,
-                contentDescription = "Category",
-                tint = colorResource(id = R.color.yellow)
-            )
-        },
-    )
-if (showBottomSheet)
-    BottomSheetList(
-        items = items,
-        buttonText = stringResource(id = R.string.add_other_categories),
-        selectedItem = selectedItem,
-        onItemSelected = {
-            capitalizedSelectedItem =  it.replaceFirstChar { char -> char.uppercaseChar() }
-            onCategorySelected(it)
-            showBottomSheet = false
-                         },
-        label = "",
-        labelMapper = {it},
-        onDismiss = {showBottomSheet = false},
+                }
+        )
+    }
 
-
-    )
+    if (showBottomSheet)
+        BottomSheetList(
+            items = items,
+            buttonText = stringResource(id = R.string.add_other_categories),
+            selectedItem = selectedItem,
+            onItemSelected = {
+                capitalizedSelectedItem = it.replaceFirstChar { char -> char.uppercaseChar() }
+                onCategorySelected(it)
+                showBottomSheet = false
+            },
+            label = "",
+            labelMapper = { it },
+            onDismiss = { showBottomSheet = false },
+        )
 }
+
 
 @Preview(showBackground = true)
 @Composable
