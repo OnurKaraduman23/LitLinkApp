@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
 import com.onuryasarkaraduman.ui.navigation.CategoriesSelector
 import com.onuryasarkaraduman.ui.navigation.Home
+import com.onuryasarkaraduman.ui.navigation.Login
 import com.onuryasarkaraduman.ui.navigation.Screen
 import com.onuryasarkaraduman.ui.navigation.categoriesSelectorScreen
 import com.onuryasarkaraduman.ui.navigation.welcomeScreen
@@ -18,6 +19,6 @@ internal fun NavGraphBuilder.onboardingFlowNavigation(navController: NavHostCont
         welcomeScreen(
             onNavigateCategoriesSelector = {navController.navigate(CategoriesSelector)}
         )
-        categoriesSelectorScreen(onNavigateNextScreen = { navController.navigate(Home) })
+        categoriesSelectorScreen(onNavigateNextScreen = { navController.navigate(Login) })
     }
 }

@@ -1,5 +1,6 @@
 package com.onuryasarkaraduman.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.onuryasarkaraduman.auth.FirebaseAuthRepository
@@ -32,13 +33,18 @@ internal class SplashViewModel @Inject constructor(
     }
 
     private fun screenTransition(onBoardingState: Boolean) = viewModelScope.launch {
+        Log.e("Dante", "Onbs: $onBoardingState isLgdIn: ${isLoggedIn()}")
         emitUiEffect(
             if (onBoardingState && isLoggedIn()) {
                 UiEffect.NavigateHome
 
             } else if (onBoardingState && !isLoggedIn()) {
                 UiEffect.NavigateLogin
-            } else UiEffect.NavigateOnboarding
+            } else if (!onBoardingState) {
+                UiEffect.NavigateOnboarding
+            } else {
+                UiEffect.NavigateLogin
+            }
         )
     }
 
