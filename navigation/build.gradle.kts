@@ -22,6 +22,7 @@ dependencies {
     implementation(projects.feature.splash.ui)
     implementation(projects.feature.login.ui)
     implementation(projects.feature.register.ui)
+    implementation(projects.feature.friends.ui)
 
     implementation(projects.core.ui)
 

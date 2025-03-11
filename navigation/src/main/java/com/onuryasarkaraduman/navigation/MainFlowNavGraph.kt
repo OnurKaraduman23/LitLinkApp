@@ -4,12 +4,14 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
 import com.onuryasarkaraduman.ui.navigation.Detail
+import com.onuryasarkaraduman.ui.navigation.Friends
 import com.onuryasarkaraduman.ui.navigation.detailScreen
 import com.onuryasarkaraduman.ui.navigation.Home
 import com.onuryasarkaraduman.ui.navigation.Login
 import com.onuryasarkaraduman.ui.navigation.Screen
 import com.onuryasarkaraduman.ui.navigation.discoverScreen
 import com.onuryasarkaraduman.ui.navigation.favoritesScreen
+import com.onuryasarkaraduman.ui.navigation.friendsScreen
 import com.onuryasarkaraduman.ui.navigation.homeScreen
 import com.onuryasarkaraduman.ui.navigation.profileScreen
 import com.onuryasarkaraduman.ui.searchScreen
@@ -21,7 +23,8 @@ object MainFlow : Screen
 internal fun NavGraphBuilder.mainFlowNavigation(navController: NavHostController) {
     navigation<MainFlow>(Home) {
         homeScreen(
-            onNavigateDetail = {navController.navigate(Detail(it))}
+            onNavigateDetail = {navController.navigate(Detail(it))},
+            onNavigateFriends = {navController.navigate(Friends)}
         )
         searchScreen()
         profileScreen(
@@ -38,5 +41,6 @@ internal fun NavGraphBuilder.mainFlowNavigation(navController: NavHostController
         detailScreen(
             onNavigateBack = {navController.popBackStack()}
         )
+        friendsScreen()
     }
 }

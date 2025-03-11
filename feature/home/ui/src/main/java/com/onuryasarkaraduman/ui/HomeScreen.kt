@@ -52,6 +52,7 @@ internal fun HomeScreen(
     uiEffect: Flow<UiEffect>,
     onAction: (UiAction) -> Unit,
     onNavigateDetail: (String) -> Unit,
+    onNavigateFriends: () -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -66,6 +67,7 @@ internal fun HomeScreen(
             }
 
             is UiEffect.NavigateDetail -> onNavigateDetail(effect.id)
+            is UiEffect.NavigateFriends -> onNavigateFriends()
         }
     }
 
@@ -74,7 +76,7 @@ internal fun HomeScreen(
     ) {
         AppToolbar(title = stringResource(id = R.string.welcome))
 
-        HomeContent(uiState, onAction, onNavigateDetail)
+        HomeContent(uiState, onAction, onNavigateDetail, onNavigateFriends)
     }
 }
 
@@ -83,6 +85,7 @@ internal fun HomeContent(
     uiState: UiState,
     onAction: (UiAction) -> Unit,
     onNavigateDetail: (String) -> Unit,
+    onNavigateFriends: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -152,7 +155,7 @@ internal fun HomeContent(
                 onNavigateDetail(selectedId)
             },
             onClickAddFriends = {
-
+                onAction(UiAction.AddFriendsClick)
             }
         )
     }
@@ -241,6 +244,7 @@ internal fun HomeScreenPreview(
         uiState = uiState,
         uiEffect = flow { },
         onAction = {},
-        onNavigateDetail = {}
+        onNavigateDetail = {},
+        onNavigateFriends = {}
     )
 }

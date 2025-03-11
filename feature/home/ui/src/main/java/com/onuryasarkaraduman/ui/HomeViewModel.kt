@@ -41,6 +41,9 @@ internal class HomeViewModel @Inject constructor(
                 is UiAction.OnBooksClick -> {
                     emitUiEffect(UiEffect.NavigateDetail(uiAction.id))
                 }
+                is UiAction.AddFriendsClick -> {
+                    emitUiEffect(UiEffect.NavigateFriends)
+                }
             }
         }
 
