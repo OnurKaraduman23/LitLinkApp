@@ -45,6 +45,10 @@
             <option value="$PROJECT_DIR$/feature/favorites/data" />
             <option value="$PROJECT_DIR$/feature/favorites/domain" />
             <option value="$PROJECT_DIR$/feature/favorites/ui" />
+            <option value="$PROJECT_DIR$/feature/friends" />
+            <option value="$PROJECT_DIR$/feature/friends/data" />
+            <option value="$PROJECT_DIR$/feature/friends/domain" />
+            <option value="$PROJECT_DIR$/feature/friends/ui" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/home/data" />
             <option value="$PROJECT_DIR$/feature/home/domain" />
@@ -76,7 +80,6 @@
             <option value="$PROJECT_DIR$/navigation" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
