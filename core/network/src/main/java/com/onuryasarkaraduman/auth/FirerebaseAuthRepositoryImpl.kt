@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.onuryasarkaraduman.common.BaseException
 import com.onuryasarkaraduman.common.Resource
 import com.onuryasarkaraduman.datasource.user.User
-import com.onuryasarkaraduman.firestore.UserRepository
+import com.onuryasarkaraduman.firestore.user.UserRepository
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
