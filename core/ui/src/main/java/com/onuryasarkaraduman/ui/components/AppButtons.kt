@@ -29,17 +29,17 @@ import androidx.compose.ui.unit.sp
 import com.onuryasarkaraduman.core.ui.R
 
 @Composable
-fun AddFriendsButton(
+fun AddButton(
     modifier: Modifier = Modifier,
     text: String,
-    onClickAddFriends: () -> Unit,
+    onClickAdd: () -> Unit,
 ) {
     Button(
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
             containerColor = colorResource(id = R.color.yellow)
         ),
-        onClick = { onClickAddFriends() }
+        onClick = { onClickAdd() }
     ) {
         Icon(
             imageVector = Icons.Default.Add,
@@ -164,9 +164,9 @@ fun LitLinkAppButton(
 @Preview(showBackground = true)
 @Composable
 fun AddFriendsButtonPreview() {
-    AddFriendsButton(
+    AddButton(
         text = stringResource(id = R.string.add_friends),
-        onClickAddFriends = {}
+        onClickAdd = {}
     )
 }
 

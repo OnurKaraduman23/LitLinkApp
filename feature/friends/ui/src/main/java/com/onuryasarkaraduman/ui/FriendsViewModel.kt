@@ -21,6 +21,7 @@ internal class FriendsViewModel @Inject constructor(
         viewModelScope.launch {
             when (uiAction) {
                 is UIAction.OnClick -> {}
+                is UIAction.OnBackClick -> {emitUiEffect(UIEffect.NavigateBack)}
             }
         }
 

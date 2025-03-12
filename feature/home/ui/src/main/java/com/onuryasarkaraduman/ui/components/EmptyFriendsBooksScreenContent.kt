@@ -31,9 +31,9 @@ internal fun EmptyFriendsBooksContent(
             text = stringResource(id = R.string.you_have_no_friends)
         )
         Spacer(modifier = Modifier.height(8.dp))
-        AddFriendsButton(
+        AddButton(
             text = stringResource(id = R.string.add_friends),
-            onClickAddFriends = { onClickAddFriends() }
+            onClickAdd = { onClickAddFriends() }
         )
     }
 }
