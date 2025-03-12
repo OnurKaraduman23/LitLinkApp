@@ -1,6 +1,6 @@
 package com.onuryasarkaraduman.navigation
 
-import com.onuryasarkaraduman.ui.Search
+import com.onuryasarkaraduman.ui.navigation.Search
 import com.onuryasarkaraduman.ui.navigation.Discover
 import com.onuryasarkaraduman.ui.navigation.Favorites
 import com.onuryasarkaraduman.ui.navigation.Home

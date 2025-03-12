@@ -7,9 +7,27 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.onuryasarkaraduman.ui.SearchContract.UIAction
+import com.onuryasarkaraduman.ui.SearchContract.UIEffect
+import com.onuryasarkaraduman.ui.SearchContract.UIState
+import com.onuryasarkaraduman.ui.extensions.collectWithLifecycle
+import kotlinx.coroutines.flow.Flow
 
 @Composable
-fun SearchScreen() {
+internal fun SearchScreen(
+    uiState: UIState,
+    uiEffect: Flow<UIEffect>,
+    onAction: (UIAction) -> Unit,
+    onNavigateDetail: (String) -> Unit,
+) {
+    uiEffect.collectWithLifecycle { effect ->
+        when (effect) {
+            is UIEffect.NavigateDetail -> {
+                onNavigateDetail(effect.id)
+            }
+        }
+
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,

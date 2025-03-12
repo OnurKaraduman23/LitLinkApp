@@ -12,10 +12,12 @@ internal object FriendsContract {
     sealed interface UIAction{
         data object OnClick: UIAction
         data object OnBackClick : UIAction
+        data object OnAddBooksClick: UIAction
 
     }
 
     sealed interface UIEffect{
         data object NavigateBack : UIEffect
+        data object NavigateSearchBook: UIEffect
     }
 }
