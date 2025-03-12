@@ -1,4 +1,4 @@
-package com.onuryasarkaraduman.firestore
+package com.onuryasarkaraduman.firestore.user
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.onuryasarkaraduman.common.BaseException
