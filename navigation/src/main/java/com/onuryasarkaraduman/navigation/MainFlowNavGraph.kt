@@ -28,7 +28,8 @@ internal fun NavGraphBuilder.mainFlowNavigation(navController: NavHostController
             onNavigateFriends = { navController.navigate(Friends) }
         )
         searchScreen(
-            onNavigateDetail = { navController.navigate(Detail(it)) }
+            onNavigateDetail = { navController.navigate(Detail(it)) },
+            onNavigateBack = { navController.popBackStack() }
         )
         profileScreen(
             onNavigateLogin = {
@@ -46,7 +47,7 @@ internal fun NavGraphBuilder.mainFlowNavigation(navController: NavHostController
         )
         friendsScreen(
             onNavigateBack = { navController.popBackStack() },
-            onNavigateSearchBooks = {navController.navigate(Search)}
+            onNavigateSearchBooks = { navController.navigate(Search) }
         )
     }
 }

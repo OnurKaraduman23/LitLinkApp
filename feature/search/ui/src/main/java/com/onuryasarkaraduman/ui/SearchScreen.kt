@@ -19,12 +19,15 @@ internal fun SearchScreen(
     uiEffect: Flow<UIEffect>,
     onAction: (UIAction) -> Unit,
     onNavigateDetail: (String) -> Unit,
+    onNavigateBack: () -> Unit,
 ) {
     uiEffect.collectWithLifecycle { effect ->
         when (effect) {
             is UIEffect.NavigateDetail -> {
                 onNavigateDetail(effect.id)
             }
+
+            is UIEffect.NavigateBack -> onNavigateBack()
         }
 
     }

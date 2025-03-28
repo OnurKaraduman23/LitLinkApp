@@ -24,13 +24,15 @@ internal fun FriendsScreen(
     uiEffect: Flow<UIEffect>,
     onAction: (UIAction) -> Unit,
     onNavigateBack: () -> Unit,
-    onNavigateSearchBooks: () -> Unit
+    onNavigateSearchBooks: () -> Unit,
 ) {
 
     uiEffect.collectWithLifecycle { effect ->
         when (effect) {
             is UIEffect.NavigateBack -> onNavigateBack()
-            is UIEffect.NavigateSearchBook -> {onNavigateSearchBooks()}
+            is UIEffect.NavigateSearchBook -> {
+                onNavigateSearchBooks()
+            }
         }
 
     }
@@ -48,13 +50,16 @@ internal fun FriendsScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (!uiState.isBookAdded) NoBooksSection(
-                onClick = {onAction(UIAction.OnAddBooksClick)}
-            )
+            if (!uiState.isBookAdded) {
+                NoBooksSection(
+                    onClick = { onAction(UIAction.OnAddBooksClick) }
+                )
+            }
+
 
         }
         /**
-         Add Book Buttonu Search Screen e yönlendirmeli
+        Add Book Buttonu Search Screen e yönlendirmeli
          *
          */
     }
@@ -70,5 +75,5 @@ internal fun FriendsScreenPreview() {
         onNavigateBack = {},
         onNavigateSearchBooks = {}
 
-        )
+    )
 }
