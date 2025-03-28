@@ -1,4 +1,4 @@
-package com.onuryasarkaraduman.data.di
+package com.onuryasarkaraduman.feature.home.data.di
 
 import com.onuryasarkaraduman.data.repository.HomeRepositoryImpl
 import com.onuryasarkaraduman.domain.repository.HomeRepository

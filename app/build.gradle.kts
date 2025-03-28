@@ -39,6 +39,7 @@ dependencies {
 
     implementation(projects.feature.home.data)
     implementation(projects.feature.detail.data)
+    implementation(projects.feature.search.data)
 
     implementation(libs.navigation.compose)
 
