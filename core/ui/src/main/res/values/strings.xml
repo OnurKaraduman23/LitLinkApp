@@ -45,10 +45,13 @@ Let’s turn every page into an opportunity to connect.</string>
     <string name="friends">Friends</string>
     <string name="you_must_added_books">You must add books to your reading list to be able to add friends</string>
     <string name="add_books">Add Books</string>
-
+    <string name="search_books">Search Books</string>
+    <string name="search">Search</string>
+    <string name="no_result">No Result</string>
 
 
     <string name="login_image_content_description">Login Image</string>
     <string name="register_image_content_description">Register Image</string>
+    <string name="search_image_content_description">Search Image</string>
 
 </resources>

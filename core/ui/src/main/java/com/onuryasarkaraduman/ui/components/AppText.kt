@@ -28,7 +28,7 @@ fun HeaderText(
     fontSize: Int = 22,
     fontWeight: FontWeight = FontWeight.Bold,
     color: Color = Color.Black,
-    overflow: TextOverflow = TextOverflow.Clip,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign? = null,
 ) {
@@ -55,7 +55,7 @@ fun AppText(
     text: String,
     fontSize: Int = 14,
     color: Color = Color.Black,
-    overflow: TextOverflow = TextOverflow.Clip,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
     maxLines: Int = Int.MAX_VALUE,
     textAlign: TextAlign? = null,
 ) {

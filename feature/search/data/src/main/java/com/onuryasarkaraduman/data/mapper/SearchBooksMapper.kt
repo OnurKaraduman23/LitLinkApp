@@ -9,8 +9,8 @@ internal fun SearchBooksResponse?.toModel(): List<SearchBooksModel> {
         SearchBooksModel(
             id = item.id.orEmpty(),
             bookName = item.volumeInfo.title.orEmpty(),
-            bookUrl = item.volumeInfo.imageLinks.thumbnail.orEmpty(),
-            category = item.volumeInfo.categories.firstOrNull().orEmpty(),
+            bookUrl = item.volumeInfo.imageLinks?.thumbnail.orEmpty(),
+            category = item.volumeInfo.categories?.firstOrNull().orEmpty(),
             authors = item.volumeInfo.authors.orEmpty()
         )
     }.orEmpty()

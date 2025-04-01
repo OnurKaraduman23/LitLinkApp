@@ -16,7 +16,7 @@ internal class SearchBooksRepositoryImpl @Inject constructor(
         return safeApiCall {
             searchBooksApi.searchBooks(query = query)
         }.map { response ->
-            response.toModel() // Burada response'un tipi belli olmalı
+            response.toModel()
         }
     }
 }
