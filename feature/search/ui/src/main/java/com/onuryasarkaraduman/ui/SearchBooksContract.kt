@@ -2,7 +2,7 @@ package com.onuryasarkaraduman.ui
 
 import com.onuryasarkaraduman.domain.model.SearchBooksModel
 
-internal object SearchContract {
+internal object SearchBooksContract {
 
     data class UIState(
         val isLoading: Boolean = false,

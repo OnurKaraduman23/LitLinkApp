@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.onuryasarkaraduman.common.fold
 import com.onuryasarkaraduman.domain.use_case.GetSearchBooksUseCase
-import com.onuryasarkaraduman.ui.SearchContract.UIAction
-import com.onuryasarkaraduman.ui.SearchContract.UIEffect
-import com.onuryasarkaraduman.ui.SearchContract.UIState
+import com.onuryasarkaraduman.ui.SearchBooksContract.UIAction
+import com.onuryasarkaraduman.ui.SearchBooksContract.UIEffect
+import com.onuryasarkaraduman.ui.SearchBooksContract.UIState
 import com.onuryasarkaraduman.ui.delegate.mvi.MVI
 import com.onuryasarkaraduman.ui.delegate.mvi.mvi
 import dagger.hilt.android.lifecycle.HiltViewModel
