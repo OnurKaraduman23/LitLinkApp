@@ -18,6 +18,8 @@ android {
 dependencies {
     implementation(projects.feature.home.domain)
     implementation(projects.core.datastore)
+    implementation(projects.core.network)
+    implementation(projects.core.datasource)
     testImplementation(libs.junit)
 
 }

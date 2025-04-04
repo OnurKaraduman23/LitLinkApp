@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.litlink.android.feature)
     alias(libs.plugins.litlink.android.library.compose)
+    alias(libs.plugins.litlink.android.firebase)
 }
 
 android {
@@ -17,4 +18,6 @@ android {
 
 dependencies {
     implementation(projects.feature.detail.domain)
+    implementation(projects.core.network)
+    implementation(projects.core.datasource)
 }

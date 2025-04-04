@@ -50,6 +50,13 @@ Let’s turn every page into an opportunity to connect.</string>
     <string name="no_result">No Result</string>
 
 
+    <string name="add_book_options">Add Options</string>
+    <string name="i_read">I Read</string>
+    <string name="i_will_read">I Will Read</string>
+    <string name="i_reading">I\'m Reading</string>
+    <string name="save">SAVE</string>
+
+
     <string name="login_image_content_description">Login Image</string>
     <string name="register_image_content_description">Register Image</string>
     <string name="search_image_content_description">Search Image</string>

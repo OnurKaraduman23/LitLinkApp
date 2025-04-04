@@ -34,7 +34,6 @@ internal fun SearchScreen(
     uiEffect: Flow<UIEffect>,
     onAction: (UIAction) -> Unit,
     onNavigateDetail: (String) -> Unit,
-    onNavigateBack: () -> Unit,
 ) {
     uiEffect.collectWithLifecycle { effect ->
         when (effect) {
@@ -42,7 +41,6 @@ internal fun SearchScreen(
                 onNavigateDetail(effect.id)
             }
 
-            is UIEffect.NavigateBack -> onNavigateBack()
         }
 
     }
@@ -52,7 +50,6 @@ internal fun SearchScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         AppToolbar(
-            onBackClick = { onAction(UIAction.OnBackClick) },
             title = stringResource(id = R.string.search)
         )
         AppSearchBar(
@@ -102,7 +99,6 @@ internal fun SearchScreenPreview(
         uiState = uiState,
         uiEffect = flow { },
         onAction = {},
-        onNavigateBack = {},
         onNavigateDetail = {}
     )
 }

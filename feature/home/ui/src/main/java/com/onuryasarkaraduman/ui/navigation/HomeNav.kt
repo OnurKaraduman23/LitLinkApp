@@ -24,7 +24,7 @@ fun NavGraphBuilder.homeScreen(
             uiState = uiState,
             uiEffect = uiEffect,
             onAction = viewModel::onAction,
-            onNavigateDetail = onNavigateDetail,
+            onNavigateDetail = { onNavigateDetail(it) },
             onNavigateFriends = onNavigateFriends
         )
     }

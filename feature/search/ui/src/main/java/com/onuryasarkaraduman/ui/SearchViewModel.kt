@@ -23,7 +23,6 @@ internal class SearchViewModel @Inject constructor(
     override fun onAction(uiAction: UIAction) {
         viewModelScope.launch {
             when (uiAction) {
-                is UIAction.OnBackClick -> emitUiEffect(UIEffect.NavigateBack)
                 is UIAction.OnBookClick -> emitUiEffect(UIEffect.NavigateDetail(uiAction.id))
                 is UIAction.OnQueryChange -> {
                     updateUiState { copy(query = uiAction.query) }

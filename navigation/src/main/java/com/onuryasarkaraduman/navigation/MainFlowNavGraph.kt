@@ -29,7 +29,6 @@ internal fun NavGraphBuilder.mainFlowNavigation(navController: NavHostController
         )
         searchScreen(
             onNavigateDetail = { navController.navigate(Detail(it)) },
-            onNavigateBack = { navController.popBackStack() }
         )
         profileScreen(
             onNavigateLogin = {

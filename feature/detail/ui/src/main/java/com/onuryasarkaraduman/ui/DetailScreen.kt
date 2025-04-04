@@ -1,5 +1,7 @@
 package com.onuryasarkaraduman.ui
 
+import android.widget.Toast
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,17 +21,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.onuryasarkaraduman.core.ui.R
+import com.onuryasarkaraduman.datasource.user.ReadingStatus
 import com.onuryasarkaraduman.domain.model.BookDetailModel
 import com.onuryasarkaraduman.ui.DetailContract.UiAction
 import com.onuryasarkaraduman.ui.DetailContract.UiEffect
 import com.onuryasarkaraduman.ui.DetailContract.UiState
+import com.onuryasarkaraduman.ui.components.AddBookBottomSheet
 import com.onuryasarkaraduman.ui.components.AppAsyncImage
-import com.onuryasarkaraduman.ui.components.AppLoadingSmall
+import com.onuryasarkaraduman.ui.components.AppLoadingXLargeTransparent
 import com.onuryasarkaraduman.ui.components.AppRatingBar
 import com.onuryasarkaraduman.ui.components.AppText
 import com.onuryasarkaraduman.ui.components.AppTextTitle
@@ -46,7 +52,7 @@ internal fun DetailScreen(
     onAction: (UiAction) -> Unit,
     onNavigateBack: () -> Unit,
 ) {
-
+    val context = LocalContext.current
     uiEffect.collectWithLifecycle { effect ->
         when (effect) {
             is UiEffect.NavigateOtherScreen -> {
@@ -54,31 +60,70 @@ internal fun DetailScreen(
             }
 
             is UiEffect.ShowError -> {
-                // Show Error Message
+                Toast.makeText(context, effect.errorMessage, Toast.LENGTH_SHORT).show()
             }
 
             is UiEffect.NavigateBack -> onNavigateBack()
+
+
+            is UiEffect.ShowMessage -> {
+                Toast.makeText(context, effect.message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        AppToolbar(
-            title = stringResource(R.string.detail),
-            onBackClick = { onAction(UiAction.OnBackClick) }
-        )
-        HorizontalDivider(
-            modifier = Modifier.padding(vertical = 12.dp),
-            thickness = 1.dp,
-            color = Color.Black
-        )
-        if (uiState.isLoading) AppLoadingSmall()
-        if (uiState.bookDetails == null) EmptyScreenContent()
-        DetailContent(
-            uiState = uiState,
-            onAction = onAction,
-        )
+
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        // Ana içerik
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+
+            val iconRes =
+                if (uiState.whichCategoryAdded != ReadingStatus.NONE) {
+                    painterResource(id = R.drawable.ic_bookmark_fill)
+                } else {
+                    painterResource(id = R.drawable.ic_bookmark_empty)
+                }
+
+            AppToolbar(
+                title = stringResource(R.string.detail),
+                onBackClick = { onAction(UiAction.OnBackClick) },
+                endIconDrawable = iconRes, // ismini değiştirmeyi unutma
+                onEndIconClick = { onAction(UiAction.OnBottomSheetOpen) }
+            )
+            HorizontalDivider(
+                modifier = Modifier.padding(vertical = 12.dp),
+                thickness = 1.dp,
+                color = Color.Black
+            )
+
+            if (uiState.bookDetails == null) EmptyScreenContent()
+            DetailContent(
+                uiState = uiState,
+                onAction = onAction,
+            )
+        }
+
+
+        if (uiState.isLoading) {
+            AppLoadingXLargeTransparent()
+        }
+
+        // BottomSheet
+        if (uiState.isBottomSheetVisible) {
+            AddBookBottomSheet(
+                bookDetail = uiState.bookDetails,
+                selectedStatus = uiState.whichCategoryAdded,
+                onDismissRequest = { onAction(UiAction.OnBottomSheetDismiss) },
+                onStatusSelected = { status ->
+                    onAction(UiAction.OnReadingStatusSelected(status))
+                },
+                onSaveClick = { onAction(UiAction.OnSaveClick) }
+            )
+        }
     }
 }
 

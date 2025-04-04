@@ -12,6 +12,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +24,9 @@ import com.onuryasarkaraduman.core.ui.R
 fun AppToolbar(
     title: String? = null,
     onBackClick: (() -> Unit)? = null,
+    endIcon: ImageVector? = null,
+    endIconDrawable: Painter? = null,
+    onEndIconClick: (() -> Unit)? = null,
 ) {
     Row(
         modifier = Modifier
@@ -56,6 +62,44 @@ fun AppToolbar(
                 }
             }
 
+            when {
+                endIcon != null -> {
+                    Box(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickable(
+                                indication = null,
+                                interactionSource = remember { MutableInteractionSource() }
+                            ) { onEndIconClick?.invoke() },
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(28.dp),
+                            imageVector = endIcon,
+                            contentDescription = null
+                        )
+                    }
+                }
+
+                endIconDrawable != null -> {
+                    Box(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickable(
+                                indication = null,
+                                interactionSource = remember { MutableInteractionSource() }
+                            ) { onEndIconClick?.invoke() },
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(28.dp),
+                            painter = endIconDrawable,
+                            contentDescription = null
+                        )
+                    }
+                }
+            }
+
             Spacer(modifier = Modifier.size(24.dp))
         } else {
             title?.let {
@@ -85,5 +129,15 @@ fun AppToolbarBackClickPreview() {
     AppToolbar(
         title = stringResource(R.string.welcome),
         onBackClick = {}
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AppToolbarWithDrawableIconPreview() {
+    AppToolbar(
+        title = stringResource(R.string.welcome),
+        onBackClick = {},
+        endIconDrawable = painterResource(id = R.drawable.ic_bookmark_empty)
     )
 }

@@ -12,7 +12,6 @@ internal object SearchBooksContract {
     )
 
     sealed interface UIAction {
-        data object OnBackClick : UIAction
         data class OnBookClick(val id: String) : UIAction
         data class OnQueryChange(val query: String) : UIAction
 
@@ -20,6 +19,5 @@ internal object SearchBooksContract {
 
     sealed interface UIEffect {
         data class NavigateDetail(val id: String) : UIEffect
-        data object NavigateBack : UIEffect
     }
 }

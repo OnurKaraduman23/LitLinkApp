@@ -66,7 +66,7 @@ internal fun HomeScreen(
                 Toast.makeText(context, effect.message, Toast.LENGTH_SHORT).show()
             }
 
-            is UiEffect.NavigateDetail -> onNavigateDetail(effect.id)
+            is UiEffect.NavigateDetail -> onNavigateDetail(effect.bookId)
             is UiEffect.NavigateFriends -> onNavigateFriends()
         }
     }

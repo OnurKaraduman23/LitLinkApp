@@ -3,10 +3,12 @@ package com.onuryasarkaraduman.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.onuryasarkaraduman.auth.FirebaseAuthRepository
 import com.onuryasarkaraduman.common.fold
 import com.onuryasarkaraduman.datastore.DataStoreHelper
 import com.onuryasarkaraduman.domain.use_case.GetBooksByCategoriesUseCase
 import com.onuryasarkaraduman.domain.use_case.GetRandomCategoryUseCase
+import com.onuryasarkaraduman.firestore.user.UserRepository
 import com.onuryasarkaraduman.ui.HomeContract.UiAction
 import com.onuryasarkaraduman.ui.HomeContract.UiEffect
 import com.onuryasarkaraduman.ui.HomeContract.UiState
@@ -21,7 +23,10 @@ internal class HomeViewModel @Inject constructor(
     private val getBooksByCategoriesUseCase: GetBooksByCategoriesUseCase,
     private val getRandomCategoryUseCase: GetRandomCategoryUseCase,
     private val dataStore: DataStoreHelper,
-) : ViewModel(),
+    private val userRepository: UserRepository,
+    private val authRepository: FirebaseAuthRepository,
+
+    ) : ViewModel(),
     MVI<UiState, UiAction, UiEffect> by mvi(UiState()) {
 
     init {
@@ -39,8 +44,9 @@ internal class HomeViewModel @Inject constructor(
                 }
 
                 is UiAction.OnBooksClick -> {
-                    emitUiEffect(UiEffect.NavigateDetail(uiAction.id))
+                    emitUiEffect(UiEffect.NavigateDetail(uiAction.bookId))
                 }
+
                 is UiAction.AddFriendsClick -> {
                     emitUiEffect(UiEffect.NavigateFriends)
                 }
@@ -73,6 +79,7 @@ internal class HomeViewModel @Inject constructor(
 
         }
     }
+
 
 
 }

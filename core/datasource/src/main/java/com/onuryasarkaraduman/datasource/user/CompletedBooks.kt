@@ -3,5 +3,5 @@ package com.onuryasarkaraduman.datasource.user
 data class CompletedBooks(
     val bookId: String = "",
     val bookName: String = "",
-    val bookImageUrl: String = "",
+    val bookImageUrl: kotlin.String = "",
 )

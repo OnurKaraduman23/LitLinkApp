@@ -10,7 +10,7 @@ import com.onuryasarkaraduman.ui.DetailViewModel
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Detail(val id: String) : Screen
+data class Detail(val bookId: String) : Screen
 
 fun NavGraphBuilder.detailScreen(
     onNavigateBack: () -> Unit,

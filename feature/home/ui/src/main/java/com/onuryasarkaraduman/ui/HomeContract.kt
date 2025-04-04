@@ -14,15 +14,15 @@ internal object HomeContract {
     sealed interface UiAction {
         data object OnClick : UiAction
         data class CategorySelected(val category: String) : UiAction
-        data class OnBooksClick(val id: String) : UiAction
-        data object AddFriendsClick: UiAction
+        data class OnBooksClick(val bookId: String) : UiAction
+        data object AddFriendsClick : UiAction
 
     }
 
     sealed interface UiEffect {
         data class ShowError(val message: String) : UiEffect
-        data class NavigateDetail(val id: String) : UiEffect
-        data object NavigateFriends: UiEffect
+        data class NavigateDetail(val bookId: String) : UiEffect
+        data object NavigateFriends : UiEffect
     }
 
 }

@@ -29,5 +29,29 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getUsernameById(userId: String?): String {
+        val db = FirebaseFirestore.getInstance()
+        var username = ""
+
+        if (userId != null) {
+            // Kullanıcının UID'sini kullanarak Firestore'dan bilgilerini çek
+            db.collection("users").document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        // Dökümanı User sınıfına dönüştür
+                        val user = document.toObject(User::class.java)
+                        // userName'i al
+                        username = user?.userName ?: ""
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    println("Error getting user: $exception")
+                }
+        }
+
+        return username
+    }
+
 
 }

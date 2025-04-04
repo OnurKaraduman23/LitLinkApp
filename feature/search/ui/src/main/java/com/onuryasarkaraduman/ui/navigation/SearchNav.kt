@@ -14,7 +14,6 @@ data object Search : Screen
 
 fun NavGraphBuilder.searchScreen(
     onNavigateDetail: (String) -> Unit,
-    onNavigateBack: () -> Unit,
 ) {
 
     composable<Search> {
@@ -26,7 +25,6 @@ fun NavGraphBuilder.searchScreen(
             uiEffect = uiEffect,
             onAction = viewModel::onAction,
             onNavigateDetail = onNavigateDetail,
-            onNavigateBack = onNavigateBack
         )
     }
 }

@@ -8,7 +8,9 @@ import com.onuryasarkaraduman.common.BaseException
 import com.onuryasarkaraduman.common.Resource
 import com.onuryasarkaraduman.datasource.user.User
 import com.onuryasarkaraduman.firestore.user.UserRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class FirerebaseAuthRepositoryImpl @Inject constructor(
@@ -61,6 +63,10 @@ class FirerebaseAuthRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             Resource.Error(BaseException("Unknown Error: ${e.message}"))
         }
+    }
+
+    override suspend fun getCurrentUserId(): String? = withContext(Dispatchers.IO) {
+        auth.currentUser?.let { it.uid } // let scope function olduğu için return aslında etmiş oluyor
     }
 
     override fun isUserLoggedIn(): Boolean = auth.currentUser != null
