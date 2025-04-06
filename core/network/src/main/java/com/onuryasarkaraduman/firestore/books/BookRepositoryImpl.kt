@@ -135,5 +135,36 @@ class BookRepositoryImpl @Inject constructor(
         return ReadingStatus.NONE
     }
 
+    override suspend fun hasUserAddedAnyBooks(userId: String): Boolean {
+        val userRef = firestore.collection("users").document(userId)
+        val snapshot = userRef.get().await()
+
+        if (snapshot.exists()) {
+            val booksMap = snapshot.get("books") as? Map<String, Any>
+
+            booksMap?.let { map ->
+                // CompletedBooks kontrolü
+                val completedBooks = map["completedBooks"] as? List<Map<String, Any>> ?: emptyList()
+                if (completedBooks.isNotEmpty()) {
+                    return true
+                }
+
+                // PlannedBooks kontrolü
+                val plannedBooks = map["plannedBooks"] as? List<Map<String, Any>> ?: emptyList()
+                if (plannedBooks.isNotEmpty()) {
+                    return true
+                }
+
+                // ReadingBooks kontrolü
+                val readingBooks = map["readingBooks"] as? List<Map<String, Any>> ?: emptyList()
+                if (readingBooks.isNotEmpty()) {
+                    return true
+                }
+            }
+        }
+
+        return false
+    }
+
 
 }

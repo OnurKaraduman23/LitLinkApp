@@ -6,6 +6,7 @@ internal object FriendsContract {
     data class UiState(
         val isLoading: Boolean = false,
         val isBookAdded: Boolean = false,
+        val isHaveAnyFriends: Boolean = false,
         val friendsList: List<Friend> = emptyList()
     )
 
@@ -13,11 +14,13 @@ internal object FriendsContract {
         data object OnClick: UIAction
         data object OnBackClick : UIAction
         data object OnAddBooksClick: UIAction
+        data object OnAddFriendsClick: UIAction
 
     }
 
     sealed interface UIEffect{
         data object NavigateBack : UIEffect
         data object NavigateSearchBook: UIEffect
+        data object NavigateAddFriends: UIEffect
     }
 }

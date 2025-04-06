@@ -11,4 +11,5 @@ interface BookRepository {
     fun addPlannedBooks(userId: String, plannedBooks: PlannedBooks): Task<Void>
     fun addReadingBook(userId: String, currentReadingBooks: ReadingBooks): Task<Void>
     suspend fun checkAddedUserBook(userId: String, bookId: String): ReadingStatus
+    suspend fun hasUserAddedAnyBooks(userId: String): Boolean
 }

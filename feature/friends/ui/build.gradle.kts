@@ -18,4 +18,6 @@ android {
 dependencies {
     implementation(projects.feature.friends.domain)
     implementation(projects.core.datasource)
+    implementation(projects.core.network)
+
 }
