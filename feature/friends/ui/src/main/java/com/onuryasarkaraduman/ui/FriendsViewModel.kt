@@ -61,8 +61,3 @@ internal class FriendsViewModel @Inject constructor(
     }
 
 }
-
-/**
- * KİTAP EKLENMEZSE KULLANICI ARKADAŞ LİSTELEYEMEMELİ
- *
- */

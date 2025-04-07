@@ -16,6 +16,7 @@ data object Friends : Screen
 fun NavGraphBuilder.friendsScreen(
     onNavigateBack: () -> Unit,
     onNavigateSearchBooks: () -> Unit,
+    onNavigateAddFriends: () -> Unit
 
     ) {
     composable<Friends> {
@@ -27,7 +28,8 @@ fun NavGraphBuilder.friendsScreen(
             uiEffect = uiEffect,
             onAction = viewModel::onAction,
             onNavigateBack = onNavigateBack,
-            onNavigateSearchBooks = onNavigateSearchBooks
+            onNavigateSearchBooks = onNavigateSearchBooks,
+            onNavigateAddFriends = onNavigateAddFriends
         )
     }
 }

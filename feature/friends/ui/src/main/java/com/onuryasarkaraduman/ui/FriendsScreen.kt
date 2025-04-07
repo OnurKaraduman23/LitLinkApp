@@ -4,12 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.onuryasarkaraduman.core.ui.R
 import com.onuryasarkaraduman.ui.FriendsContract.UIAction
 import com.onuryasarkaraduman.ui.FriendsContract.UIEffect
@@ -29,6 +29,7 @@ internal fun FriendsScreen(
     onAction: (UIAction) -> Unit,
     onNavigateBack: () -> Unit,
     onNavigateSearchBooks: () -> Unit,
+    onNavigateAddFriends: () -> Unit,
 ) {
 
     uiEffect.collectWithLifecycle { effect ->
@@ -37,8 +38,9 @@ internal fun FriendsScreen(
             is UIEffect.NavigateSearchBook -> {
                 onNavigateSearchBooks()
             }
+
             is UIEffect.NavigateAddFriends -> {
-                //TODO: Arkadaş ekleme ekranına yönlendirilecek
+                onNavigateAddFriends()
             }
         }
 
@@ -74,9 +76,7 @@ internal fun FriendsScreen(
             } else {
                 // Kullanıcının kitapları var ama arkadaşı yoksa, arkadaş ekleme bildirimi göster
                 NoHaveAnyFriendsSection(
-                    onClick = {
-                        //TODO: Arkadaş ekleme ekranına yönlendirilecek
-                    }
+                    onClick = { onAction(UIAction.OnAddFriendsClick) }
                 )
             }
 
@@ -87,20 +87,23 @@ internal fun FriendsScreen(
 
 @Composable
 internal fun ColumnScope.FriendsSection(
-    onClick:() -> Unit
-){
+    onClick: () -> Unit,
+) {
 
 }
 
 @Preview(showBackground = true)
 @Composable
-internal fun FriendsScreenPreview() {
+internal fun FriendsScreenPreview(
+    @PreviewParameter(FriendsPreviewProvider ::class) uiState: UiState,
+) {
     FriendsScreen(
-        uiState = UiState(),
+        uiState = uiState,
         uiEffect = flow { },
         onAction = {},
         onNavigateBack = {},
-        onNavigateSearchBooks = {}
+        onNavigateSearchBooks = {},
+        onNavigateAddFriends = {}
 
     )
 }

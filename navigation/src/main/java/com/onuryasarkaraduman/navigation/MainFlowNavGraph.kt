@@ -3,12 +3,14 @@ package com.onuryasarkaraduman.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
+import com.onuryasarkaraduman.ui.navigation.AddFriends
 import com.onuryasarkaraduman.ui.navigation.Detail
 import com.onuryasarkaraduman.ui.navigation.Friends
 import com.onuryasarkaraduman.ui.navigation.Home
 import com.onuryasarkaraduman.ui.navigation.Login
 import com.onuryasarkaraduman.ui.navigation.Screen
 import com.onuryasarkaraduman.ui.navigation.Search
+import com.onuryasarkaraduman.ui.navigation.addFriendsScreen
 import com.onuryasarkaraduman.ui.navigation.detailScreen
 import com.onuryasarkaraduman.ui.navigation.discoverScreen
 import com.onuryasarkaraduman.ui.navigation.favoritesScreen
@@ -46,7 +48,11 @@ internal fun NavGraphBuilder.mainFlowNavigation(navController: NavHostController
         )
         friendsScreen(
             onNavigateBack = { navController.popBackStack() },
-            onNavigateSearchBooks = { navController.navigate(Search) }
+            onNavigateSearchBooks = { navController.navigate(Search) },
+            onNavigateAddFriends = { navController.navigate(AddFriends) }
+        )
+        addFriendsScreen(
+            onNavigateBack = { navController.popBackStack() }
         )
     }
 }
