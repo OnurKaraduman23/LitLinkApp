@@ -1,11 +1,9 @@
 package com.onuryasarkaraduman.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -58,12 +56,20 @@ internal fun FriendItem(
                 .padding(8.dp)
         ) {
             Column(
-                modifier = Modifier.align(Alignment.TopStart)
+                modifier = Modifier
+                    .align(Alignment.TopStart)
+                    .fillMaxWidth()
             ) {
                 HeaderText(
                     text = friend.userName,
                     maxLines = 1,
                     fontSize = 18
+                )
+                AppFollowButton(
+                    modifier = Modifier.align(Alignment.End),
+                    status = friend.status,
+                    friend = friend,
+                    onFollowClick = {}
                 )
             }
 
@@ -80,7 +86,7 @@ internal fun FriendItem(
 
 @Preview(showBackground = true)
 @Composable
-internal fun FriendItemPreview() {
+internal fun FriendItemFollowPreview() {
     FriendItem(
         friend = Friend(
             friendUid = "",
@@ -110,13 +116,34 @@ internal fun FriendItemPreview() {
 
 @Preview(showBackground = true)
 @Composable
-internal fun FriendItemPreview1() {
+internal fun FriendItemUnfollowPreview1() {
     FriendItem(
         friend = Friend(
             friendUid = "",
             userName = "Joe Doe",
             since = 12345687L,
-            status = FriendshipStatus.PENDING,
+            status = FriendshipStatus.ACCEPTED,
+            relatedBooks = listOf(
+                RelatedBooks(
+                    "1", "Book 1", "https://example.com/1.jpg",
+                ),
+
+                )
+        ),
+        onFriendClick = {},
+        onRelatedBooksClick = {}
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+internal fun FriendItemUnfPreview1() {
+    FriendItem(
+        friend = Friend(
+            friendUid = "",
+            userName = "Joe Doe",
+            since = 12345687L,
+            status = FriendshipStatus.NONE,
             relatedBooks = listOf(
                 RelatedBooks(
                     "1", "Book 1", "https://example.com/1.jpg",

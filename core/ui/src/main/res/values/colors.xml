@@ -2,8 +2,11 @@
 <resources>
     <color name="yellow">#FFA02A</color>
     <color name="gray_transparent">#80E4E4E6</color>
+    <color name="gray">#80939395</color>
+    <color name="black">#80000000</color>
     <color name="yellow_selection_border">#FFA02A</color>
     <color name="yellow_selection">#E2993D</color>
     <color name="green">#09EF42</color>
     <color name="red">#DD0808</color>
+    <color name="blue">#707CF1</color>
 </resources>

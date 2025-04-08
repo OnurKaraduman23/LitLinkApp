@@ -22,8 +22,8 @@ import com.onuryasarkaraduman.ui.extensions.noRippleClickable
 
 @Composable
 internal fun RelatedBooksItem(
-    relatedBooks: List<RelatedBooks?>,
     modifier: Modifier = Modifier,
+    relatedBooks: List<RelatedBooks?>,
     onClick: () -> Unit,
 ) {
     val maxVisible = 3
